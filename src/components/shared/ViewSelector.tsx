@@ -9,7 +9,7 @@ function ViewSelector() {
     <div className="flex items-center gap-4 px-2 py-1.5 font-roboto ">
       <label
         htmlFor="sort-by"
-        className="text-sm font-medium uppercase text-gray-800"
+        className="text-sm font-medium uppercase text-gray-300"
       >
         View
       </label>
@@ -17,14 +17,14 @@ function ViewSelector() {
       <div className="flex items-center gap-2">
         <Grid2X2
           onClick={() => setSelected("grid")}
-          className={cn("h-7 w-7 cursor-pointer fill-slate-300 stroke-white", {
-            "fill-black ": selected === "grid",
+          className={cn("h-5 w-5 cursor-pointer fill-slate-400 stroke-black", {
+            "fill-slate-300 ": selected === "grid",
           })}
         />
 
         <List
-          className={cn("h-7 w-7 cursor-pointer text-slate-300", {
-            "stroke-black": selected === "list",
+          className={cn("h-5 w-5 cursor-pointer stroke-slate-400", {
+            "stroke-white": selected === "list",
           })}
           onClick={() => setSelected("list")}
         />

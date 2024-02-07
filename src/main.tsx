@@ -1,11 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { RouterProvider } from "react-router-dom";
 import "./styles/index.css";
-
-import CharacterPage from "./pages/CharacterPage";
+import router from "./lib/router";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <CharacterPage />
+    <RouterProvider router={router} />
   </React.StrictMode>,
 );

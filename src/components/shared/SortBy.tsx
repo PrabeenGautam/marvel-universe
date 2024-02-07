@@ -8,7 +8,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { sortOptions } from "@/constant";
-import { cn } from "@/lib/utils";
 
 function SortBy() {
   const [selected, setSelected] = useState("asc");
@@ -21,14 +20,14 @@ function SortBy() {
     <div className="flex items-center gap-4 px-2 py-1.5 font-roboto ">
       <label
         htmlFor="sort-by"
-        className="text-sm font-medium uppercase text-gray-600"
+        className="text-sm font-medium uppercase text-gray-300"
       >
         Sort by
       </label>
 
       <Select defaultValue={selected} onValueChange={handleSortChange}>
         <SelectTrigger
-          className="no-focus h-auto w-fit border-none p-0 text-xs text-red-500"
+          className="no-focus h-auto w-fit border-none bg-transparent px-2 py-1 text-xs "
           id="sort-by"
         >
           <SelectValue placeholder="Choose sorting methods" />
@@ -39,9 +38,7 @@ function SortBy() {
             <SelectItem
               key={option.key}
               value={option.value}
-              className={cn("text-xs", {
-                "text-red-500 focus:text-red-500": selected === option.value,
-              })}
+              className="text-xs"
             >
               {option.label}
             </SelectItem>
