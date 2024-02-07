@@ -93,9 +93,7 @@
   clip-path: polygon(0 0, 100% 0, 100% 95%, 92% 100%, 0 100%);
 }
 
-.dot-separator:not(:first-child) {
-  &::before {
-    content: "•";
-    margin: 0 0.5rem;
-  }
+.dot-separator:not(:first-child)::before {
+  content: "•";
+  margin: 0 0.5rem;
 }
