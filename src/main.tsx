@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./styles/index.css";
-import SortBy from "./components/shared/SortBy";
+import ViewSelector from "./components/shared/ViewSelector";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <SortBy />
+    <ViewSelector />
   </React.StrictMode>,
 );
