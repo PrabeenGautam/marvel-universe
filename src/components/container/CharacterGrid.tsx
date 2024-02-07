@@ -7,7 +7,7 @@ interface Props {
 
 function CharacterGrid({ characters }: Props) {
   return (
-    <div className="grid grid-cols-5 gap-x-4 gap-y-8">
+    <div className="xs:grid-cols-2 grid gap-x-4 gap-y-8 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
       {characters.results.map((character) => (
         <CharacterCard key={character.id} character={character} />
       ))}

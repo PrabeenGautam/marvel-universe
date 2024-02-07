@@ -1,5 +1,6 @@
 import { CharacterType } from "@/types/response/character.types";
 import Image from "../shared/Image";
+import { Link } from "react-router-dom";
 
 interface Props {
   character: CharacterType;
@@ -9,7 +10,10 @@ function CharacterCard({ character }: Props) {
   const { path, extension } = character.thumbnail;
 
   return (
-    <div className="hover-full clip-border group flex flex-col overflow-hidden rounded-md bg-black">
+    <Link
+      to={`/character/${character.id}`}
+      className="hover-full clip-border group flex flex-col overflow-hidden rounded-md bg-black"
+    >
       <div className="img-wrapper h-52 w-full overflow-hidden">
         <Image
           src={`${path}.${extension}`}
@@ -29,7 +33,7 @@ function CharacterCard({ character }: Props) {
           </p>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
 

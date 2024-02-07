@@ -22,6 +22,9 @@ module.exports = {
       height: {
         100: "25rem",
       },
+      screens: {
+        xs: "450px",
+      },
       fontFamily: {
         roboto: ["Roboto", "sans-serif"],
       },
