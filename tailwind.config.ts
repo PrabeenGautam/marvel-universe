@@ -1,4 +1,5 @@
-/** @type {import('tailwindcss').Config} */
+import type { Config } from "tailwindcss";
+
 module.exports = {
   darkMode: ["class"],
   content: [
@@ -7,6 +8,7 @@ module.exports = {
     "./app/**/*.{ts,tsx}",
     "./src/**/*.{ts,tsx}",
   ],
+
   prefix: "",
   theme: {
     container: {
@@ -23,8 +25,17 @@ module.exports = {
       fontFamily: {
         roboto: ["Roboto", "sans-serif"],
       },
+
       backgroundImage: {
         "hero-pattern": "url('/static/characters_art.jpg')",
+      },
+      aspectRatio: {
+        unset: "unset",
+        "4/3": "4 / 3",
+        "3/2": "3 / 2",
+        "2/3": "2 / 3",
+        "9/16": "9 / 16",
+        "5/4": "5 / 4",
       },
       colors: {
         border: "hsl(var(--border))",
@@ -84,4 +95,4 @@ module.exports = {
     },
   },
   plugins: [require("tailwindcss-animate")],
-};
+} satisfies Config;
