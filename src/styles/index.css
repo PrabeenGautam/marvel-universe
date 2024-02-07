@@ -57,6 +57,10 @@
   .no-focus {
     @apply focus:!ring-0 focus:!ring-transparent focus:!ring-offset-0 focus-visible:!ring-0 focus-visible:!ring-transparent focus-visible:!ring-offset-0;
   }
+
+  .hover-full {
+    @apply relative cursor-pointer transition-all after:absolute after:inset-0 after:z-20 hover:after:bg-black/40;
+  }
 }
 
 .clip-border {
