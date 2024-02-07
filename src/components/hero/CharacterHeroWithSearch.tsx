@@ -1,9 +1,12 @@
 import SearchBar from "../shared/SearchBar";
+import BackgroundHero from "./BackgroundHero";
 
 function CharacterHeroWithSearch() {
   return (
     <div className="hero-container flex-center relative h-100 bg-black px-4 text-white">
       {/* // Background wrapper*/}
+      <BackgroundHero url={"/static/characters_art.jpg"} opacity={0.8} />
+
       <div className="hero-wrapper z-[1] before:absolute before:inset-0 before:bg-hero-pattern before:bg-cover before:bg-center  before:bg-no-repeat after:absolute after:inset-0 after:bg-black/50"></div>
 
       {/* // Content */}
