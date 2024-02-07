@@ -87,4 +87,8 @@
   .no-focus {
     @apply focus:!ring-0 focus:!ring-transparent focus:!ring-offset-0 focus-visible:!ring-0 focus-visible:!ring-transparent focus-visible:!ring-offset-0;
   }
+
+  .clip-border {
+    clip-path: polygon(0 0, 100% 0, 100% 95%, 92% 100%, 0 100%);
+  }
 }
