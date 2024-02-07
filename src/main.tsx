@@ -1,10 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./styles/index.css";
-import CharacterHero from "./components/hero/CharacterHero";
+
+import CharacterPage from "./pages/CharacterPage";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <CharacterHero />
+    <CharacterPage />
   </React.StrictMode>,
 );

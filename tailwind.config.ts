@@ -28,6 +28,7 @@ module.exports = {
 
       backgroundImage: {
         "hero-pattern": "url('/static/characters_art.jpg')",
+        "angle-pattern": "url('/static/angle-corner.svg')",
       },
       aspectRatio: {
         unset: "unset",

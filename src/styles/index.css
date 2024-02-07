@@ -71,7 +71,7 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-[#202020];
   }
 }
 
@@ -96,4 +96,35 @@
 .dot-separator:not(:first-child)::before {
   content: "•";
   margin: 0 0.5rem;
+}
+
+.angled-title {
+  position: relative;
+}
+
+.angled-title::before,
+.angled-title::after {
+  content: "";
+  position: absolute;
+  width: 1.5rem;
+  aspect-ratio: 1;
+
+  background-image: url("/static/angle-corner.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+@media screen and (min-width: 768px) {
+  .angled-title::before,
+  .angled-title::after {
+    width: 2rem;
+  }
+}
+
+.angled-title::before {
+  translate: -50% -15%;
+}
+
+.angled-title::after {
+  rotate: 180deg;
 }

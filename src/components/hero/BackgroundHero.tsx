@@ -9,6 +9,23 @@ interface BackgroundHeroProps {
   position?: "center" | "top" | "bottom" | "left" | "right";
 }
 
+interface Props {
+  opacity?: number;
+}
+
+const BackgroundContainer = styled.div<Props>`
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  &:after {
+    content: "";
+    inset: 0;
+    background: rgba(21, 21, 21, ${(props) => props.opacity ?? 0.5});
+    position: absolute;
+  }
+`;
+
 function BackgroundHero({
   alt,
   url,
@@ -16,21 +33,8 @@ function BackgroundHero({
   scale = 1,
   position = "center",
 }: BackgroundHeroProps) {
-  const BackgroundContainer = styled.div`
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    overflow: hidden;
-    &:after {
-      content: "";
-      inset: 0;
-      background: rgba(21, 21, 21, ${opacity});
-      position: absolute;
-    }
-  `;
-
   return (
-    <BackgroundContainer>
+    <BackgroundContainer opacity={opacity}>
       {url && (
         <img
           style={{ transform: `scale(${scale})` }}
