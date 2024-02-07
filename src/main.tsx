@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./styles/index.css";
-import CharacterHeroWithSearch from "@/components/hero/CharacterHeroWithSearch";
+import SortBy from "./components/shared/SortBy";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <CharacterHeroWithSearch />
+    <SortBy />
   </React.StrictMode>,
 );

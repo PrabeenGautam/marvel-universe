@@ -83,4 +83,8 @@
   .flex-col-center {
     @apply flex flex-col items-center justify-center;
   }
+
+  .no-focus {
+    @apply focus:!ring-0 focus:!ring-transparent focus:!ring-offset-0 focus-visible:!ring-0 focus-visible:!ring-transparent focus-visible:!ring-offset-0;
+  }
 }
