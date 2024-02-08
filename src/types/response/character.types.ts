@@ -21,6 +21,6 @@ export interface CharacterType {
   urls: Url[];
 }
 
-export interface CharacterData extends PaginationStats {
+export interface CharacterResponse extends PaginationStats {
   results: CharacterType[];
 }

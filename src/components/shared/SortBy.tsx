@@ -12,7 +12,7 @@ import { sortOptions } from "@/constant";
 function SortBy() {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const sort = searchParams.get("sort") || "asc";
+  const sort = searchParams.get("sort") || "name";
 
   const handleSortChange = (value: string) => {
     setSearchParams((params) => {

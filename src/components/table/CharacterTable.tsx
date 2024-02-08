@@ -6,12 +6,12 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { CharacterData } from "@/types/response/character.types";
+import { CharacterResponse } from "@/types/response/character.types";
 import ImageHoverCard from "../card/ImageHoverCard";
 import { useNavigate } from "react-router-dom";
 
 interface Props {
-  characters: CharacterData;
+  characters: CharacterResponse;
 }
 
 function CharacterTable({ characters }: Props) {

@@ -39,6 +39,7 @@ function Pagination({ pagination }: Props) {
 
   const handlePageChange = (page: number) => {
     if (page === currentPage) return;
+    window.scrollTo({ top: 0, behavior: "smooth" });
 
     setSearchParams((params) => {
       page === 1 ? params.delete("page") : params.set("page", String(page));

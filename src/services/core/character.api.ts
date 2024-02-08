@@ -1,30 +1,34 @@
 import { CharactersConfig } from "@/services/api.routes";
 import getResponse from "../getResponse.api";
+import { CharacterResponse } from "@/types/response/character.types";
+
+import { SortType } from "@/types";
 
 interface GetCharactersProps {
-  offset?: number;
+  page: number;
   limit?: number;
   nameStartsWith?: string;
-  orderBy?: "name" | "modified" | "-name" | "-modified";
+  orderBy?: SortType;
 }
 
-export const getCharacters = async (props: GetCharactersProps) => {
-  const {
-    offset = 0,
-    limit = 20,
-    nameStartsWith = "",
-    orderBy = "name",
-  } = props;
+export const getCharacters = async (
+  props: GetCharactersProps,
+): Promise<CharacterResponse> => {
+  const { page = 1, limit = 20, nameStartsWith, orderBy = "name" } = props;
 
-  return await getResponse({
+  const offset = (page - 1) * limit;
+  const params = { offset, limit, orderBy } as any;
+
+  if (nameStartsWith) {
+    params["nameStartsWith"] = nameStartsWith;
+  }
+
+  const response = await getResponse({
     url: CharactersConfig.GET_CHARACTERS,
-    params: {
-      offset,
-      limit,
-      nameStartsWith,
-      orderBy,
-    },
+    params,
   });
+
+  return response.data.data;
 };
 
 export const getCharacterById = async (id: number) => {

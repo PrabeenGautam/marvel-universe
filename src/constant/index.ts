@@ -1,6 +1,6 @@
 export const sortOptions = [
-  { label: "A - Z", value: "asc", key: "alphabetical_asc_sort" },
-  { label: "Z - A", value: "desc", key: "alphabetical_desc_sort" },
+  { label: "A - Z", value: "name", key: "alphabetical_asc_sort" },
+  { label: "Z - A", value: "-name", key: "alphabetical_desc_sort" },
 ];
 
 export const characterStat = [
