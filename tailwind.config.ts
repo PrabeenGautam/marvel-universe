@@ -29,6 +29,10 @@ module.exports = {
         roboto: ["Roboto", "sans-serif"],
       },
 
+      backgroundColor: {
+        primary: "#ef4444",
+      },
+
       backgroundImage: {
         "hero-pattern": "url('/static/characters_art.jpg')",
         "angle-pattern": "url('/static/angle-corner.svg')",

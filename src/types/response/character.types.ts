@@ -1,3 +1,5 @@
+import { PaginationStats } from "..";
+
 export interface Thumbnail {
   path: string;
   extension: string;
@@ -53,10 +55,6 @@ export interface CharacterType {
   urls: Url[];
 }
 
-export interface CharacterData {
-  offset: number;
-  limit: number;
-  total: number;
-  count: number;
+export interface CharacterData extends PaginationStats {
   results: CharacterType[];
 }
