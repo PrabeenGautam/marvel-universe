@@ -14,7 +14,7 @@ function ContainerElement(
       ref={ref}
       {...props}
       className={cn(
-        "relative mx-auto max-w-screen-xl px-4 py-5 lg:py-8",
+        "relative mx-auto max-w-screen-xl px-4 py-5 text-white lg:py-8",
         className,
       )}
     >
