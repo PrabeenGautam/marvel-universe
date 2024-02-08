@@ -22,14 +22,14 @@ function CharacterTable({ characters }: Props) {
   };
 
   return (
-    <div className="rounded-xl bg-black/30 shadow-md">
-      <Table className="rounded-xl text-sm">
-        <TableHeader className="text-base">
-          <TableRow className="border-none bg-[#111] hover:bg-black">
-            <TableHead className="w-[100px]">ID</TableHead>
+    <div className="overflow-x-auto rounded-xl bg-[#2e2e36] shadow-md">
+      <Table className="min-w-[28rem] rounded-xl text-sm">
+        <TableHeader className="bg-[#19181d] text-base">
+          <TableRow className="h-16  border-none hover:bg-inherit ">
+            <TableHead className="hidden w-24 md:table-cell">ID</TableHead>
             <TableHead>Name</TableHead>
             <TableHead>Description</TableHead>
-            <TableHead className="text-right">Thumbnails</TableHead>
+            <TableHead>Thumbnails</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -41,9 +41,11 @@ function CharacterTable({ characters }: Props) {
               <TableRow
                 onClick={() => handleRoute(character.id)}
                 key={character.id}
-                className="cursor-pointer border-none transition-all odd:bg-[#222] hover:bg-black"
+                className="cursor-pointer border-none transition-all odd:bg-[#26252b] hover:bg-[#222]"
               >
-                <TableCell className="font-medium">{character.id}</TableCell>
+                <TableCell className="hidden font-medium md:table-cell">
+                  {character.id}
+                </TableCell>
                 <TableCell>{character.name}</TableCell>
                 <TableCell>{character.description || "N/A"}</TableCell>
                 <TableCell className="flex-center">
