@@ -1,5 +1,12 @@
 import { Url } from "url";
-import { CommonResouces, PaginationStats, Resource, Story, Thumbnail } from ".";
+import {
+  CommonResouces,
+  PaginationStats,
+  Resource,
+  Story,
+  Thumbnail,
+  Creator,
+} from ".";
 
 interface TextObject {
   type: string;
@@ -15,24 +22,6 @@ interface DateObject {
 interface Price {
   type: string;
   price: number;
-}
-
-interface Creator {
-  resourceURI: string;
-  name: string;
-  role: string;
-}
-
-interface CreatorList {
-  available: number;
-  collectionURI: string;
-  items: Creator[];
-  returned: number;
-}
-
-interface Character {
-  resourceURI: string;
-  name: string;
 }
 
 interface Comic {
@@ -61,8 +50,8 @@ interface Comic {
   prices: Price[];
   thumbnail: Thumbnail;
   images: Thumbnail[];
-  creators: CreatorList;
-  characters: CommonResouces<Character>;
+  creators: CommonResouces<Creator>;
+  characters: CommonResouces<Resource>;
   stories: CommonResouces<Story>;
   events: CommonResouces<Resource>;
 }

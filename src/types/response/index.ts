@@ -42,3 +42,9 @@ export interface CommonResouces<T> {
   items: T[];
   returned: number;
 }
+
+export interface Creator {
+  resourceURI: string;
+  name: string;
+  role: string;
+}
