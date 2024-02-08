@@ -10,7 +10,7 @@ export const characterStat = [
 ];
 
 export const characterStatOptions = [
-  { label: "Comics", value: "comic", key: "stat_option_comic" },
+  { label: "Comics", value: "comics", key: "stat_option_comic" },
   { label: "Series", value: "series", key: "stat_option_series" },
   { label: "Stories", value: "stories", key: "stat_option_stories" },
 ];

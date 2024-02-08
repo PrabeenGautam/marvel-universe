@@ -4,17 +4,31 @@ import CharacterHero from "@/components/hero/CharacterHero";
 import CharacterStatOptions from "@/components/info/CharacterStatOptions";
 import Header from "@/components/shared/Header";
 import { characters } from "@/constant/temp/characters";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { comics } from "./../constant/temp/comic";
 import DetailCard from "@/components/card/DetailCard";
 import { series } from "@/constant/temp/series";
 import { stories } from "@/constant/temp/stories";
+import { useLayoutEffect, useRef } from "react";
 
 function CharacterPage() {
   const { id } = useParams<{ id: string }>();
   const character = characters.data.results.find(
     (c) => String(c.id) === id,
   ) as any;
+
+  const { hash } = useLocation();
+
+  const elementRef = useRef<HTMLDivElement[]>([]);
+
+  useLayoutEffect(() => {
+    if (!elementRef.current.length) return;
+
+    const element = elementRef.current.find((ref) => ref.id === hash.slice(1));
+    if (!element) return;
+
+    element.scrollIntoView({ behavior: "smooth" });
+  }, [hash]);
 
   const comicsList = comics.data.results;
   const seriesList = series.data.results;
@@ -31,7 +45,11 @@ function CharacterPage() {
         </div>
       </section>
 
-      <Container className="space-y-4">
+      <Container
+        className="space-y-4"
+        id="comics"
+        ref={(ref) => (elementRef.current[0] = ref as HTMLDivElement)}
+      >
         <Header title="Comics" />
         <GridContainer>
           {comicsList.map((comic) => (
@@ -45,7 +63,11 @@ function CharacterPage() {
         </GridContainer>
       </Container>
 
-      <Container className="space-y-4">
+      <Container
+        className="space-y-4"
+        id="series"
+        ref={(ref) => (elementRef.current[1] = ref as HTMLDivElement)}
+      >
         <Header title="Series" />
         <GridContainer>
           {seriesList.map((series) => (
@@ -59,7 +81,11 @@ function CharacterPage() {
         </GridContainer>
       </Container>
 
-      <Container className="space-y-4">
+      <Container
+        className="space-y-4"
+        id="stories"
+        ref={(ref) => (elementRef.current[2] = ref as HTMLDivElement)}
+      >
         <Header title="Stories" />
         <GridContainer>
           {storiesList.map((comic) => (

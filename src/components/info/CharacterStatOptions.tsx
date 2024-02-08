@@ -1,20 +1,18 @@
 import { characterStatOptions } from "@/constant";
 import { cn } from "@/lib/utils";
-import { useState } from "react";
-
-type SelectedType = "comic" | "series" | "stories";
+import { Link, useLocation } from "react-router-dom";
 
 function CharacterStatOptions() {
-  const [selected, setSelected] = useState<SelectedType>("comic");
+  const { hash } = useLocation() as { hash: string };
+  const isIn = ["#comics", "#series", "#stories"].includes(hash);
 
-  const handleSelected = (value: string) => {
-    setSelected(value as SelectedType);
-  };
+  const selected = isIn ? hash.slice(1) : "comics";
 
   return (
     <div className="flex w-fit divide-x overflow-hidden rounded-b-md bg-[#222] text-gray-400 shadow-2xl">
       {characterStatOptions.map((option) => (
-        <div
+        <Link
+          to={`#${option.value}`}
           key={option.key}
           className={cn(
             "cursor-pointer border-t-2 border-x-[#464646] border-t-[#464646] p-2 text-center text-sm transition-all hover:border-t-red-500 hover:bg-black hover:text-red-500 sm:px-5 sm:py-2.5 sm:text-base lg:min-w-32",
@@ -23,10 +21,9 @@ function CharacterStatOptions() {
                 selected === option.value,
             },
           )}
-          onClick={() => handleSelected(option.value)}
         >
           {option.label}
-        </div>
+        </Link>
       ))}
     </div>
   );
