@@ -36,7 +36,7 @@ function Home() {
             <span>{characters.total}</span> results
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             <CharacterChart />
             <SortBy />
             <ViewSelector view={view} onChange={handleViewChange} />

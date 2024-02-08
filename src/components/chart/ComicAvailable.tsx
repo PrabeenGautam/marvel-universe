@@ -5,7 +5,7 @@ import ApexCharts from "react-apexcharts";
 function CharacterComicChart() {
   const characters = c.data.results;
 
-  const sortedCharacters = characters.sort((a, b) => {
+  const sortedCharacters = [...characters].sort((a, b) => {
     return a.comics.available - b.comics.available;
   });
 
@@ -16,14 +16,8 @@ function CharacterComicChart() {
     chart: {
       type: "bar",
       height: 350,
-    },
-    title: {
-      text: "Character Comic Available",
-      style: {
-        fontSize: "14px",
-        fontFamily: "Roboto, sans-serif",
-        fontWeight: 600,
-      },
+      zoom: { enabled: false },
+      toolbar: { show: false },
     },
     plotOptions: {
       bar: { horizontal: true },
