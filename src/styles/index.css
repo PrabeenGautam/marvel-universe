@@ -114,3 +114,16 @@
 .angled-title::after {
   rotate: 180deg;
 }
+
+.child-scroll::-webkit-scrollbar {
+  width: 0.45rem;
+}
+
+.child-scroll::-webkit-scrollbar-thumb {
+  background-color: #4b5563;
+  border-radius: 25px;
+}
+
+.child-scroll::-webkit-scrollbar-track {
+  background-color: #2d3748;
+}

@@ -1,23 +1,26 @@
-import { characters as c } from "@/constant/temp/characters";
+import { CharacterType } from "@/types/response/character.types";
 import { ApexOptions } from "apexcharts";
 import ApexCharts from "react-apexcharts";
 
-function CharacterComicChart() {
-  const characters = c.data.results;
+interface Props {
+  character: CharacterType[];
+}
 
-  const sortedCharacters = [...characters].sort((a, b) => {
-    return a.comics.available - b.comics.available;
-  });
-
-  const categories = sortedCharacters.map((c) => c.name);
-  const series = sortedCharacters.map((c) => c.comics.available);
+function CharacterComicChart({ character }: Props) {
+  const categories = character.map((c) => c.name);
+  const series = character.map((c) => c.comics.available);
 
   const options: ApexOptions = {
     chart: {
       type: "bar",
-      height: 350,
       zoom: { enabled: false },
       toolbar: { show: false },
+      background: "transparent",
+      height: 350,
+    },
+    theme: {
+      mode: "dark",
+      palette: "palette4",
     },
     plotOptions: {
       bar: { horizontal: true },
@@ -40,16 +43,16 @@ function CharacterComicChart() {
     },
   };
 
+  const dynamicHeight = character.length * 18;
+
   return (
-    <div>
-      <ApexCharts
-        options={options}
-        series={[{ data: series, name: "Comic" }]}
-        type="bar"
-        width={"95%"}
-        height={350}
-      />
-    </div>
+    <ApexCharts
+      options={options}
+      series={[{ data: series, name: "Comic" }]}
+      type="bar"
+      width={"95%"}
+      height={dynamicHeight}
+    />
   );
 }
 
