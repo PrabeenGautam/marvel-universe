@@ -5,7 +5,7 @@ import getCharacterThumbnail from "@/helpers/getCharacterThumbnai;";
 interface Props {
   title: string;
   description: string;
-  thumbnail: Thumbnail;
+  thumbnail?: Thumbnail | null;
 }
 
 function DetailCard({ title, description, thumbnail }: Props) {
@@ -13,13 +13,24 @@ function DetailCard({ title, description, thumbnail }: Props) {
 
   return (
     <div className="group cursor-pointer">
-      <div className="img-wrapper h-auto w-full overflow-hidden">
-        <Image
-          src={image}
-          alt={title}
-          className="object-cover transition-transform duration-300 ease-in-out group-hover:scale-105"
-        />
-      </div>
+      {
+        <div className="img-wrapper h-auto w-full overflow-hidden bg-black">
+          <Image
+            src={image || "/static/no-image.png"}
+            alt={title}
+            className="aspect-2/3 object-contain transition-transform duration-300 ease-in-out group-hover:scale-105"
+          />
+          {/* {image ? (
+            <Image
+              src={image}
+              alt={title}
+              className="aspect-2/3 object-contain transition-transform duration-300 ease-in-out group-hover:scale-105"
+            />
+          ) : (
+            <div className="flex-center aspect-2/3">No image</div>
+          )} */}
+        </div>
+      }
 
       <div className="mt-3 flex flex-col gap-1">
         <a href="#" className="title font-medium group-hover:text-red-500">

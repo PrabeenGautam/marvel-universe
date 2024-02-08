@@ -7,6 +7,8 @@ import { characters } from "@/constant/temp/characters";
 import { useParams } from "react-router-dom";
 import { comics } from "./../constant/temp/comic";
 import DetailCard from "@/components/card/DetailCard";
+import { series } from "@/constant/temp/series";
+import { stories } from "@/constant/temp/stories";
 
 function CharacterPage() {
   const { id } = useParams<{ id: string }>();
@@ -15,6 +17,8 @@ function CharacterPage() {
   ) as any;
 
   const comicsList = comics.data.results;
+  const seriesList = series.data.results;
+  const storiesList = stories.data.results;
 
   return (
     <div className="space-y-4">
@@ -44,12 +48,12 @@ function CharacterPage() {
       <Container className="space-y-4">
         <Header title="Series" />
         <GridContainer>
-          {comicsList.map((comic) => (
+          {seriesList.map((series) => (
             <DetailCard
-              key={comic.id}
-              title={comic.title}
-              description={comic.description}
-              thumbnail={comic.thumbnail}
+              key={series.id}
+              title={series.title}
+              description={series.description || ""}
+              thumbnail={series.thumbnail}
             />
           ))}
         </GridContainer>
@@ -58,7 +62,7 @@ function CharacterPage() {
       <Container className="space-y-4">
         <Header title="Stories" />
         <GridContainer>
-          {comicsList.map((comic) => (
+          {storiesList.map((comic) => (
             <DetailCard
               key={comic.id}
               title={comic.title}
