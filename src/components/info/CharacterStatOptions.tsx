@@ -2,10 +2,10 @@ import { characterStatOptions } from "@/constant";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 
-type SelectedType = "overview" | "comic" | "series" | "stories" | "events";
+type SelectedType = "comic" | "series" | "stories";
 
 function CharacterStatOptions() {
-  const [selected, setSelected] = useState<SelectedType>("overview");
+  const [selected, setSelected] = useState<SelectedType>("comic");
 
   const handleSelected = (value: string) => {
     setSelected(value as SelectedType);
