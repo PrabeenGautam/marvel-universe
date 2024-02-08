@@ -22,7 +22,7 @@ function CharacterTable({ characters }: Props) {
   };
 
   return (
-    <div className="overflow-x-auto rounded-xl bg-[#2e2e36] shadow-md">
+    <div className="overflow-x-auto rounded-xl bg-[#2e2e36] text-white shadow-md">
       <Table className="min-w-[28rem] rounded-xl text-sm">
         <TableHeader className="bg-[#19181d] text-base">
           <TableRow className="h-16  border-none hover:bg-inherit ">

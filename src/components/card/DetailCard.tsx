@@ -1,6 +1,6 @@
 import { Thumbnail } from "@/types";
 import Image from "../shared/Image";
-import getCharacterThumbnail from "@/helpers/getCharacterThumbnai;";
+import getCharacterThumbnail from "@/helpers/getCharacterThumbnail";
 
 interface Props {
   title: string;
@@ -14,21 +14,12 @@ function DetailCard({ title, description, thumbnail }: Props) {
   return (
     <div className="group cursor-pointer">
       {
-        <div className="img-wrapper h-auto w-full overflow-hidden bg-black">
+        <div className="img-wrapper h-auto w-full overflow-hidden rounded-md bg-black">
           <Image
-            src={image || "/static/no-image.png"}
+            src={image}
             alt={title}
-            className="aspect-2/3 object-contain transition-transform duration-300 ease-in-out group-hover:scale-105"
+            className="aspect-[1/1.537] object-contain transition-transform duration-300 ease-in-out group-hover:scale-105"
           />
-          {/* {image ? (
-            <Image
-              src={image}
-              alt={title}
-              className="aspect-2/3 object-contain transition-transform duration-300 ease-in-out group-hover:scale-105"
-            />
-          ) : (
-            <div className="flex-center aspect-2/3">No image</div>
-          )} */}
         </div>
       }
 

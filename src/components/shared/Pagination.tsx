@@ -67,7 +67,7 @@ function Pagination({ pagination }: Props) {
   }
 
   return (
-    <div className="flex flex-wrap gap-2">
+    <div className="flex flex-wrap gap-2 text-white">
       <div
         className={cn("pagination-box", { disabled: currentPage === 1 })}
         title="Previous Page"

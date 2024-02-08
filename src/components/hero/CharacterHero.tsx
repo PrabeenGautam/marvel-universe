@@ -1,7 +1,7 @@
 import { characterStat } from "@/constant";
 import BackgroundHero from "./BackgroundHero";
 import { CharacterType } from "@/types/response/character.types";
-import getCharacterThumbnail from "@/helpers/getCharacterThumbnai;";
+import getCharacterThumbnail from "@/helpers/getCharacterThumbnail";
 
 interface Props {
   character: CharacterType;
