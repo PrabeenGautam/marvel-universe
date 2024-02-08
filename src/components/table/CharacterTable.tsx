@@ -1,3 +1,7 @@
+import { useNavigate } from "react-router-dom";
+
+import ImageHoverCard from "../card/ImageHoverCard";
+import { CharacterType } from "@/types/response/character.types";
 import {
   Table,
   TableBody,
@@ -6,12 +10,9 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { CharacterResponse } from "@/types/response/character.types";
-import ImageHoverCard from "../card/ImageHoverCard";
-import { useNavigate } from "react-router-dom";
 
 interface Props {
-  characters: CharacterResponse;
+  characters: CharacterType[];
 }
 
 function CharacterTable({ characters }: Props) {
@@ -33,7 +34,7 @@ function CharacterTable({ characters }: Props) {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {characters.results.map((character) => {
+          {characters.map((character) => {
             const { path, extension } = character.thumbnail;
             const image = `${path}.${extension}`;
 

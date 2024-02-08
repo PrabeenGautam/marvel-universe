@@ -1,26 +1,26 @@
 import { useState } from "react";
 
+import CharacterSelect from "../dropdown/CharacterSelect";
+import CharacterComicChart from "../chart/CharacterComicChart";
+import { CharacterType } from "@/types/response/character.types";
+
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import CharacterComicChart from "../chart/CharacterComicChart";
-import CharacterSelect from "../dropdown/CharacterSelect";
 
-import { characters as c } from "@/constant/temp/characters";
-import { CharacterType } from "@/types/response/character.types";
+interface Props {
+  characters: CharacterType[];
+}
 
-const characters = c.data.results;
+export function CharacterChart({ characters }: Props) {
+  const sortedCharacters = [...characters].sort((a, b) => {
+    return a.comics.available - b.comics.available;
+  });
 
-const sortedCharacters = [...characters].sort((a, b) => {
-  return a.comics.available - b.comics.available;
-}) as unknown as CharacterType[];
-
-export function CharacterChart() {
-  const [selectedCharacter, setSelectedCharacter] =
-    useState<CharacterType[]>(sortedCharacters);
+  const [selectedCharacter, setSelectedCharacter] = useState(sortedCharacters);
 
   return (
     <Dialog>

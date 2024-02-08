@@ -1,35 +1,43 @@
-import CharacterHeroWithSearch from "@/components/hero/CharacterHeroWithSearch";
-import CharacterGrid from "@/components/container/CharacterGrid";
-import Container from "@/components/container/Container,";
-import SortBy from "@/components/shared/SortBy";
-import ViewSelector from "@/components/shared/ViewSelector";
-
-import CharacterTable from "@/components/table/CharacterTable";
-import Pagination from "@/components/shared/Pagination";
 import { useState } from "react";
-import { CharacterChart } from "@/components/modal/ChartModal";
 import { useQuery } from "@tanstack/react-query";
+import { useSearchParams } from "react-router-dom";
+
+import SortBy from "@/components/shared/SortBy";
+import Pagination from "@/components/shared/Pagination";
+import Container from "@/components/container/Container,";
+import ViewSelector from "@/components/shared/ViewSelector";
 import { getCharacters } from "@/services/core/character.api";
+import { CharacterChart } from "@/components/modal/ChartModal";
+import CharacterTable from "@/components/table/CharacterTable";
+import CharacterGrid from "@/components/container/CharacterGrid";
+
+import { getDefaultPage, getDefaultSort } from "@/helpers/getDefaultQuery";
+import CharacterHeroWithSearch from "@/components/hero/CharacterHeroWithSearch";
+
 import {
   getItemFromLocalStorage,
   setItemInLocalStorage,
 } from "@/helpers/storage";
-import { useSearchParams } from "react-router-dom";
-import { getDefaultPage, getDefaultSort } from "@/helpers/getDefaultQuery";
 
 type View = "list" | "grid";
 
+/**
+ * Home Component
+ * Responsible for displaying a list of characters with various viewing options.
+ */
 function Home() {
+  // State for managing the current view type (list or grid)
   const [view, setView] = useState<View>(
     getItemFromLocalStorage("view") || "list",
   );
 
+  // Extract search parameters from the URL
   const [searchParams] = useSearchParams();
   const search = searchParams.get("search") || "";
-
   const page = getDefaultPage(searchParams.get("page"));
   const sort = getDefaultSort(searchParams.get("sort"));
 
+  // Fetch characters based on search parameters using react-query
   const { data, isError, isLoading } = useQuery({
     queryKey: [`characters-${page}-${sort}-${search}`],
     queryFn: () =>
@@ -42,6 +50,7 @@ function Home() {
 
   if (isError) throw new Error("Something went wrong fetching data!");
 
+  // Function to handle view change
   const handleViewChange = (view: View) => {
     setView(view);
     setItemInLocalStorage("view", view);
@@ -49,7 +58,10 @@ function Home() {
 
   return (
     <div>
+      {/* Hero section with search functionality */}
       <CharacterHeroWithSearch />
+
+      {/* Main content container */}
       <Container className="space-y-8">
         <div className="filter-options flex w-full flex-wrap items-center justify-between gap-4">
           <div className="flex items-center gap-1 text-sm font-medium uppercase text-gray-300">
@@ -57,20 +69,23 @@ function Home() {
             <span>results</span>
           </div>
 
+          {/* Options for chart, sorting, and view selection */}
           <div className="flex flex-wrap items-center gap-2">
-            <CharacterChart />
+            {!isLoading && data && <CharacterChart characters={data.results} />}
             <SortBy />
             <ViewSelector view={view} onChange={handleViewChange} />
           </div>
         </div>
 
+        {/* Display characters based on the selected view */}
         {!isLoading && data ? (
           <>
             <div>
-              {view === "grid" && <CharacterGrid characters={data} />}
-              {view === "list" && <CharacterTable characters={data} />}
+              {view === "grid" && <CharacterGrid characters={data.results} />}
+              {view === "list" && <CharacterTable characters={data.results} />}
             </div>
             <div className="flex justify-end">
+              {/* Pagination component */}
               <Pagination
                 pagination={{
                   count: data.count,
