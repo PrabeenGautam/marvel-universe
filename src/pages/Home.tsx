@@ -8,6 +8,7 @@ import { characters as c } from "@/constant/temp/characters";
 import CharacterTable from "@/components/table/CharacterTable";
 import Pagination from "@/components/shared/Pagination";
 import { useState } from "react";
+import { CharacterChart } from "@/components/modal/ChartModal";
 
 type View = "list" | "grid";
 
@@ -36,6 +37,7 @@ function Home() {
           </div>
 
           <div className="flex items-center gap-2">
+            <CharacterChart />
             <SortBy />
             <ViewSelector view={view} onChange={handleViewChange} />
           </div>
