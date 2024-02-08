@@ -43,7 +43,7 @@ function CharacterComicChart({ character }: Props) {
     },
   };
 
-  const dynamicHeight = character.length * 18;
+  const dynamicHeight = Math.max(character.length * 18, 200);
 
   return (
     <ApexCharts
