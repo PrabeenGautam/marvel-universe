@@ -4,14 +4,13 @@ export const sortOptions = [
 ];
 
 export const characterStat = [
-  { label: "Comics", value: 5, key: "comics" },
-  { label: "Series", value: 3, key: "series" },
-  { label: "Stories", value: 21, key: "stories" },
-  { label: "Events", value: 35, key: "events" },
+  { label: "Comics", value: 0, key: "comics" },
+  { label: "Series", value: 0, key: "series" },
+  { label: "Stories", value: 0, key: "stories" },
+  { label: "Events", value: 0, key: "events" },
 ];
 
 export const characterStatOptions = [
-  { label: "Overview", value: "overview", key: "stat_option_overview" },
   { label: "Comics", value: "comic", key: "stat_option_comic" },
   { label: "Series", value: "series", key: "stat_option_series" },
   { label: "Stories", value: "stories", key: "stat_option_stories" },

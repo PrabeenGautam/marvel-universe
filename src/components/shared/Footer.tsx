@@ -10,7 +10,7 @@ function Footer() {
       <div className="mx-auto w-full max-w-screen-xl p-4 md:py-8">
         <div className="flex flex-wrap items-center justify-between gap-8">
           <Link to="/">
-            <Image src="./static/logo.jpg" className="h-10" alt="Marvel Logo" />
+            <Image src="/static/logo.jpg" className="h-10" alt="Marvel Logo" />
           </Link>
 
           <ul className="flex items-center text-sm font-medium text-gray-500 dark:text-gray-400">
