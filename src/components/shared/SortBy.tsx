@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
 import {
   Select,
@@ -10,10 +10,15 @@ import {
 import { sortOptions } from "@/constant";
 
 function SortBy() {
-  const [selected, setSelected] = useState("asc");
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const sort = searchParams.get("sort") || "asc";
 
   const handleSortChange = (value: string) => {
-    setSelected(value);
+    setSearchParams((params) => {
+      params.set("sort", value);
+      return params;
+    });
   };
 
   return (
@@ -25,7 +30,7 @@ function SortBy() {
         Sort by
       </label>
 
-      <Select defaultValue={selected} onValueChange={handleSortChange}>
+      <Select defaultValue={sort} onValueChange={handleSortChange}>
         <SelectTrigger
           className="no-focus h-auto w-fit border-none bg-transparent px-2 py-1 text-xs "
           id="sort-by"
