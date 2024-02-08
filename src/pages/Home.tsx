@@ -13,7 +13,7 @@ type View = "list" | "grid";
 
 function Home() {
   const characters = c.data;
-  const view = "list" as View;
+  const [view, setView] = useState<View>("list");
 
   const [pagination] = useState({
     offset: 0,
@@ -21,6 +21,10 @@ function Home() {
     total: 400,
     count: 20,
   });
+
+  const handleViewChange = (view: View) => {
+    setView(view);
+  };
 
   return (
     <div>
@@ -33,7 +37,7 @@ function Home() {
 
           <div className="flex items-center gap-2">
             <SortBy />
-            <ViewSelector />
+            <ViewSelector view={view} onChange={handleViewChange} />
           </div>
         </div>
 

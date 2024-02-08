@@ -1,9 +1,15 @@
 import { cn } from "@/lib/utils";
 import { Grid2X2, List } from "lucide-react";
-import { useState } from "react";
 
-function ViewSelector() {
-  const [selected, setSelected] = useState<"grid" | "list">("grid");
+interface Props {
+  onChange: (view: "grid" | "list") => void;
+  view: "grid" | "list";
+}
+
+function ViewSelector({ onChange, view }: Props) {
+  const handleViewChange = (view: "grid" | "list") => {
+    onChange(view);
+  };
 
   return (
     <div className="flex items-center gap-4 px-2 py-1.5 font-roboto ">
@@ -16,17 +22,17 @@ function ViewSelector() {
 
       <div className="flex items-center gap-2">
         <Grid2X2
-          onClick={() => setSelected("grid")}
+          onClick={() => handleViewChange("grid")}
           className={cn("h-5 w-5 cursor-pointer fill-slate-400 stroke-black", {
-            "fill-slate-300 ": selected === "grid",
+            "fill-slate-300 ": view === "grid",
           })}
         />
 
         <List
           className={cn("h-5 w-5 cursor-pointer stroke-slate-400", {
-            "stroke-white": selected === "list",
+            "stroke-white": view === "list",
           })}
-          onClick={() => setSelected("list")}
+          onClick={() => handleViewChange("list")}
         />
       </div>
     </div>
