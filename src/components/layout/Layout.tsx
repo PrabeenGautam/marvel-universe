@@ -3,8 +3,10 @@ import Footer from "../shared/Footer";
 
 function Layout() {
   return (
-    <main>
-      <Outlet />
+    <main className="flex min-h-screen flex-col">
+      <div className="flex-1">
+        <Outlet />
+      </div>
       <Footer />
     </main>
   );
