@@ -1,11 +1,13 @@
 import { Thumbnail } from "@/types";
 import Image from "../shared/Image";
-import getCharacterThumbnail from "@/helpers/getCharacterThumbnail";
+import getThumbnailUrl from "@/helpers/getThumbnailUrl";
+import DetailContainer from "../container/DetailContainer";
 
 interface Props {
   title: string;
   description: string;
   thumbnail?: Thumbnail | null | undefined;
+  link?: string;
 }
 
 /**
@@ -13,11 +15,11 @@ interface Props {
  * Displays the title, description, and an optional thumbnail.
  * Applies hover effects for interactive elements.
  */
-function DetailCard({ title, description, thumbnail }: Props) {
-  const image = getCharacterThumbnail(thumbnail);
+function DetailCard({ title, description, thumbnail, link }: Props) {
+  const image = getThumbnailUrl(thumbnail);
 
   return (
-    <div className="group cursor-pointer">
+    <DetailContainer to={link}>
       <div className="img-wrapper aspect-[1/1.537] overflow-hidden rounded-md bg-black lg:min-h-72">
         <Image
           src={image}
@@ -38,7 +40,7 @@ function DetailCard({ title, description, thumbnail }: Props) {
           </span>
         )}
       </div>
-    </div>
+    </DetailContainer>
   );
 }
 

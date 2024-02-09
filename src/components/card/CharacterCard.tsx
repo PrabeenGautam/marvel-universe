@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 import Image from "../shared/Image";
 import { CharacterType } from "@/types/response/character.types";
-import getCharacterThumbnail from "@/helpers/getCharacterThumbnail";
+import getThumbnailUrl from "@/helpers/getThumbnailUrl";
 
 interface Props {
   character: CharacterType;
@@ -13,7 +13,7 @@ interface Props {
  * Displays the character's image, name, and a truncated description.
  */
 function CharacterCard({ character }: Props) {
-  const image = getCharacterThumbnail(character.thumbnail);
+  const image = getThumbnailUrl(character.thumbnail);
 
   return (
     <Link

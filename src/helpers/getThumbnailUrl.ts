@@ -5,7 +5,7 @@ import { Thumbnail } from "@/types";
  * @param thumbnail - The thumbnail object of the character.
  * @returns The URL of the character's thumbnail image.
  */
-function getCharacterThumbnail(thumbnail: Thumbnail | null | undefined) {
+function getThumbnailUrl(thumbnail: Thumbnail | null | undefined) {
   if (!thumbnail)
     return "https://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg";
 
@@ -13,4 +13,4 @@ function getCharacterThumbnail(thumbnail: Thumbnail | null | undefined) {
   return `${path}.${extension}`;
 }
 
-export default getCharacterThumbnail;
+export default getThumbnailUrl;

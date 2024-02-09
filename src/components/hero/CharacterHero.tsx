@@ -1,7 +1,7 @@
 import { characterStat } from "@/constant";
 import BackgroundHero from "./BackgroundHero";
 import { CharacterType } from "@/types/response/character.types";
-import getCharacterThumbnail from "@/helpers/getCharacterThumbnail";
+import getThumbnailUrl from "@/helpers/getThumbnailUrl";
 
 interface Props {
   character: CharacterType;
@@ -13,7 +13,7 @@ type Stat = "comics" | "series" | "stories" | "events";
  * Component for displaying the hero section of a character.
  */
 function CharacterHero({ character }: Props) {
-  const image = getCharacterThumbnail(character?.thumbnail);
+  const image = getThumbnailUrl(character?.thumbnail);
 
   const stat = characterStat.map((stat) => {
     const key = stat.key as Stat;
