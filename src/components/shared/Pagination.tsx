@@ -19,6 +19,7 @@ function Pagination({ pagination }: Props) {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const length = Math.min(paginationLength, 5);
+
   const currentPage = Math.abs(Number(searchParams.get("page"))) || apiPage;
 
   const { pageState, showState } = getInitialState({
@@ -91,18 +92,21 @@ function Pagination({ pagination }: Props) {
         </div>
       )}
 
-      {pages.map((page) => (
-        <div
-          title={`Go to Page ${page}`}
-          onClick={() => handlePageChange(page)}
-          key={page}
-          className={cn("pagination-box", {
-            active: page === currentPage,
-          })}
-        >
-          {page}
-        </div>
-      ))}
+      {pages.map((page) => {
+        if (page > paginationLength) return null;
+        return (
+          <div
+            title={`Go to Page ${page}`}
+            onClick={() => handlePageChange(page)}
+            key={page}
+            className={cn("pagination-box", {
+              active: page === currentPage,
+            })}
+          >
+            {page}
+          </div>
+        );
+      })}
 
       {show.last && (
         <div className="flex  gap-2">
