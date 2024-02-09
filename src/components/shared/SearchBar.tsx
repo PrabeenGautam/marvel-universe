@@ -11,9 +11,13 @@ function SearchBar() {
   useEffect(() => {
     const timeout = setTimeout(() => {
       setSearchParams((params) => {
-        query
-          ? params.set("nameStartsWith", query)
-          : params.delete("nameStartsWith");
+        if (!query) {
+          params.delete("nameStartsWith");
+          return params;
+        }
+
+        params.set("nameStartsWith", query);
+        params.delete("page");
 
         return params;
       });
@@ -41,7 +45,6 @@ function SearchBar() {
         name="query"
         onChange={(e) => setQuery(e.target.value)}
       />
-      <input type="submit" hidden />
     </form>
   );
 }
