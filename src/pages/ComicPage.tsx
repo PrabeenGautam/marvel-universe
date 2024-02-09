@@ -1,8 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 
-import Header from "@/components/shared/Header";
-import Container from "@/components/container/Container";
 import DetailHero from "@/components/hero/DetailHero";
 import { getComicById } from "@/services/core/comic.api";
 
@@ -15,13 +13,21 @@ function ComicPage() {
     isError: isComicError,
     isLoading,
   } = useQuery({
-    queryKey: [`character-comic-${id}`],
+    queryKey: [`comic-${id}`],
     queryFn: () => getComicById(id),
     select: (data) => data.results[0],
   });
 
   // Throw error if comics not found. This will be caught by the ErrorBoundary
   if (isComicError) throw new Error("Character not found");
+
+  const date = comicData
+    ? new Date(comicData.dates[0].date).toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      })
+    : null;
 
   return (
     <div>
@@ -32,17 +38,9 @@ function ComicPage() {
           description={comicData.description}
           thumbnail={comicData.thumbnail}
           creators={comicData.creators}
-          dates={comicData.dates}
+          date={date}
         />
       )}
-
-      <Container className="space-y-6">
-        <Header title="Creators" />
-      </Container>
-
-      <Container className="space-y-6">
-        <Header title="Characters" />
-      </Container>
     </div>
   );
 }

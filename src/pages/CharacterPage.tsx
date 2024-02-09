@@ -116,12 +116,13 @@ function CharacterPage() {
         {isSeriesLoading && <CardSkeleton />}
         {!isSeriesLoading && (
           <GridContainer>
-            {seriesList?.results.map((comic) => (
+            {seriesList?.results.map((series) => (
               <DetailCard
-                key={comic.id}
-                title={comic.title}
-                description={comic.description || ""}
-                thumbnail={comic.thumbnail}
+                key={series.id}
+                title={series.title}
+                description={series.description || ""}
+                thumbnail={series.thumbnail}
+                link={`/series/${series.id}`}
               />
             ))}
           </GridContainer>
@@ -139,12 +140,12 @@ function CharacterPage() {
         {isStoriesLoading && <CardSkeleton />}
         {!isStoriesLoading && (
           <GridContainer>
-            {storiesList?.results.map((comic) => (
+            {storiesList?.results.map((story) => (
               <DetailCard
-                key={comic.id}
-                title={comic.title}
-                description={comic.description || ""}
-                thumbnail={comic.thumbnail}
+                key={story.id}
+                title={story.title}
+                description={story.description || ""}
+                thumbnail={story.thumbnail}
               />
             ))}
           </GridContainer>

@@ -3,24 +3,18 @@ import Container from "@/components/container/Container";
 import BackgroundHeroComponent from "./BackgroundHero";
 
 import getThumbnailUrl from "@/helpers/getThumbnailUrl";
-import { CommonResouces, Creator, Thumbnail, DateObject } from "@/types";
+import { CommonResouces, Creator, Thumbnail } from "@/types";
 
 interface Props {
   title: string;
   description: string;
   thumbnail: Thumbnail;
   creators: CommonResouces<Creator>;
-  dates: DateObject[];
+  date: string | null;
 }
 
-function DetailHero({ title, description, thumbnail, creators, dates }: Props) {
+function DetailHero({ title, description, thumbnail, creators, date }: Props) {
   const image = getThumbnailUrl(thumbnail);
-
-  const published = new Date(dates[0].date).toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
 
   return (
     <div className="relative min-h-[min(768px,100dvh)]">
@@ -42,12 +36,14 @@ function DetailHero({ title, description, thumbnail, creators, dates }: Props) {
               {title}
             </h1>
 
-            <div className="space-y-2">
-              <strong className="text-xl font-bold">Published:</strong>
-              <p>{published}</p>
-            </div>
+            {
+              <div className="space-y-2">
+                <strong className="text-xl font-bold">Published:</strong>
+                <p>{date || "N/A"}</p>
+              </div>
+            }
 
-            <div className="grid w-full gap-4 xs:grid-cols-2">
+            <div className="grid w-full gap-x-8 gap-y-4 xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4">
               {creators.items.map((creator, index) => {
                 const key = `${creator.role}-${index}`;
 
@@ -56,7 +52,7 @@ function DetailHero({ title, description, thumbnail, creators, dates }: Props) {
                     <strong className="text-xl font-bold capitalize">
                       {creator.role}:
                     </strong>
-                    <p>{creator.name}</p>
+                    <p className="break-words">{creator.name}</p>
                   </div>
                 );
               })}

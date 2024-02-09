@@ -1,5 +1,6 @@
 import { SeriesConfig } from "@/services/api.routes";
 import getResponse from "../getResponse.api";
+import { SeriesData } from "@/types";
 
 interface GetSeriesProps {
   offset?: number;
@@ -20,10 +21,16 @@ export const getSeries = async (props: GetSeriesProps) => {
   });
 };
 
-export const getSeriesById = async (id: number) => {
-  return await getResponse({
+export const getSeriesById = async (id?: string): Promise<SeriesData> => {
+  if (!id) {
+    throw new Error("Series ID is required");
+  }
+
+  const response = await getResponse({
     url: SeriesConfig.GET_SERIES_BY_ID(id),
   });
+
+  return response.data;
 };
 
 export const getSeriesCharacters = async (id: number) => {
