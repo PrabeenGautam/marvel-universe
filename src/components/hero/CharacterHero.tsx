@@ -27,7 +27,7 @@ function CharacterHero({ character }: Props) {
       <BackgroundHero opacity={1} scale={3} />
 
       {/* // Content */}
-      <div className="z-10 mx-auto flex h-full max-w-6xl flex-col items-center sm:flex-row sm:gap-8 lg:gap-16">
+      <div className="z-10 mx-auto flex h-full max-w-screen-xl flex-col items-center px-4 sm:flex-row sm:gap-8 lg:gap-16">
         <div className="img-wrapper relative h-full overflow-hidden grayscale transition-all">
           <img
             src={image}

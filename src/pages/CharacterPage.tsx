@@ -15,13 +15,20 @@ import {
 } from "@/services/core/character.api";
 import CharacterStatOptions from "@/components/info/CharacterStatOptions";
 
+/**
+ * Component to display detailed information about a character, including comics, series, and stories.
+ */
 function CharacterPage() {
+  // Extracting the character ID from URL parameters
   const { id } = useParams<{ id: string }>();
-
   const { hash } = useLocation();
 
+  // Refs for sections to scroll to
   const elementRef = useRef<HTMLDivElement[]>([]);
 
+  /**
+   * Effect to scroll to the section based on the hash in the URL.
+   */
   useLayoutEffect(() => {
     if (!elementRef.current.length) return;
 
@@ -31,8 +38,9 @@ function CharacterPage() {
     element.scrollIntoView({ behavior: "smooth" });
   }, [hash]);
 
+  // Querying character details, comics, series, and stories
   const {
-    data: characters,
+    data: characterData,
     isError: isCharacterError,
     isLoading: isCharacterLoading,
   } = useQuery({
@@ -55,14 +63,16 @@ function CharacterPage() {
     queryFn: () => getCharacterStories(id),
   });
 
+  // Throw error if character not found. This will be caught by the ErrorBoundary
   if (isCharacterError) throw new Error("Character not found");
 
   return (
     <div className="space-y-4">
+      {/* Section for character hero image */}
       <section className="relative">
         <div>
-          {!isCharacterLoading && characters && (
-            <CharacterHero character={characters.results[0]} />
+          {!isCharacterLoading && characterData && (
+            <CharacterHero character={characterData.results[0]} />
           )}
           <div className="absolute bottom-0 right-0 hidden translate-y-1/2 sm:right-20 sm:block">
             <CharacterStatOptions />
@@ -70,6 +80,7 @@ function CharacterPage() {
         </div>
       </section>
 
+      {/* Container for displaying comics */}
       <Container
         className="space-y-4"
         id="comics"
@@ -88,6 +99,7 @@ function CharacterPage() {
         </GridContainer>
       </Container>
 
+      {/* Container for displaying series */}
       <Container
         className="space-y-4"
         id="series"
@@ -106,6 +118,7 @@ function CharacterPage() {
         </GridContainer>
       </Container>
 
+      {/* Container for displaying stories */}
       <Container
         className="space-y-4"
         id="stories"
