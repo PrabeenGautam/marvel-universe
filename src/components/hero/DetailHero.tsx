@@ -32,12 +32,12 @@ function DetailHero({ title, description, thumbnail, creators, dates }: Props) {
       />
 
       <Container>
-        <div className="mt-8 flex gap-20">
-          <div className="w-full max-w-[21.875rem]">
+        <div className="mt-8 flex flex-col gap-20 lg:flex-row">
+          <div className="mx-auto w-full max-w-96 lg:max-w-[21.875rem]">
             <Image src={image} alt={title} className="w-full" />
           </div>
 
-          <div className="w-full space-y-8">
+          <div className="mx-8 w-full space-y-8">
             <h1 className="max-w-[31.25rem] text-2xl font-semibold ">
               {title}
             </h1>
@@ -47,7 +47,7 @@ function DetailHero({ title, description, thumbnail, creators, dates }: Props) {
               <p>{published}</p>
             </div>
 
-            <div className="grid w-full grid-cols-2 gap-4">
+            <div className="grid w-full gap-4 xs:grid-cols-2">
               {creators.items.map((creator, index) => {
                 const key = `${creator.role}-${index}`;
 
