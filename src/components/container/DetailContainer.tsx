@@ -7,7 +7,11 @@ interface Props extends PropsWithChildren {
 
 function DetailContainer({ children, to }: Props) {
   if (to) {
-    return <Link to={to}>{children}</Link>;
+    return (
+      <Link className="group cursor-pointer" to={to}>
+        {children}
+      </Link>
+    );
   }
 
   return <div className="group cursor-pointer">{children}</div>;
