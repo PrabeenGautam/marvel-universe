@@ -1,6 +1,8 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 function ServerError() {
+  const { pathname } = useLocation();
+
   return (
     <>
       <main className="grid min-h-dvh place-items-center px-6 py-24 text-white sm:py-32 lg:px-8">
@@ -16,7 +18,7 @@ function ServerError() {
 
           <div className="flex-center mt-10">
             <Link
-              to="/"
+              to={pathname}
               className="rounded-md bg-black px-6 py-2.5 text-sm font-semibold"
             >
               Retry
