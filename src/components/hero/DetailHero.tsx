@@ -31,7 +31,7 @@ function DetailHero({ title, description, thumbnail, creators, date }: Props) {
             <Image src={image} alt={title} className="w-full" />
           </div>
 
-          <div className="mx-8 w-full space-y-8">
+          <div className="w-full space-y-8 px-8">
             <h1 className="max-w-[31.25rem] text-2xl font-semibold ">
               {title}
             </h1>
