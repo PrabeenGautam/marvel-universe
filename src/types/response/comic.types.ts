@@ -14,7 +14,7 @@ interface TextObject {
   text: string;
 }
 
-interface DateObject {
+export interface DateObject {
   type: string;
   date: string;
 }

@@ -1,5 +1,6 @@
 import { ComicsConfig } from "@/services/api.routes";
 import getResponse from "../getResponse.api";
+import { ComicsData } from "@/types";
 
 interface GetComicsProps {
   offset?: number;
@@ -20,10 +21,14 @@ export const getComics = async (props: GetComicsProps) => {
   });
 };
 
-export const getComicById = async (id: number) => {
-  return await getResponse({
+export const getComicById = async (id?: string): Promise<ComicsData> => {
+  if (!id) throw new Error("Comic ID is required");
+
+  const response = await getResponse({
     url: ComicsConfig.GET_COMIC_BY_ID(id),
   });
+
+  return response.data;
 };
 
 export const getComicCharacters = async (id: number) => {
