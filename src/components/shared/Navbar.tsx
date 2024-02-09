@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import Image from "./Image";
 
 function Navbar() {
-  const baseURL = import.meta.env.VITE_APP_BASEURL || "/";
+  const baseURL = import.meta.env.VITE_APP_BASEURL || "";
 
   return (
     <nav className="sticky top-0 z-30  bg-black">

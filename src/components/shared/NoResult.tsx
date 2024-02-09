@@ -6,7 +6,7 @@ interface Props {
 }
 
 function NoResult({ title, description }: Props) {
-  const baseURL = import.meta.env.VITE_APP_BASEURL || "/";
+  const baseURL = import.meta.env.VITE_APP_BASEURL || "";
   return (
     <div className="mt-10 flex w-full flex-col items-center justify-center">
       <Image

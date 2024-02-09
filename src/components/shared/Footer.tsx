@@ -3,7 +3,7 @@ import Image from "./Image";
 
 function Footer() {
   const year = new Date().getFullYear();
-  const baseURL = import.meta.env.VITE_APP_BASEURL || "/";
+  const baseURL = import.meta.env.VITE_APP_BASEURL || "";
 
   return (
     <footer className="mt-4 bg-black/50">

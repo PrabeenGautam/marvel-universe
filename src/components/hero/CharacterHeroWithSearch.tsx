@@ -5,7 +5,7 @@ import BackgroundHero from "./BackgroundHero";
  * Component for displaying the hero section with search bar for characters.
  */
 function CharacterHeroWithSearch() {
-  const baseURL = import.meta.env.VITE_APP_BASEURL || "/";
+  const baseURL = import.meta.env.VITE_APP_BASEURL || "";
 
   return (
     <div className="hero-container flex-center relative h-100 bg-black px-4 text-white">
