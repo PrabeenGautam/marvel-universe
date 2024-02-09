@@ -1,11 +1,12 @@
 import { createBrowserRouter } from "react-router-dom";
 import Home from "@/pages/Home";
 import Layout from "@/components/layout/Layout";
-import CharacterPage from "@/pages/CharacterDetailPage";
+import CharacterDetailPage from "@/pages/CharacterDetailPage";
 import NotFound from "@/pages/NotFound";
 import ServerError from "@/pages/ErrorPage";
-import ComicPage from "@/pages/ComicDetailPage";
-import SeriesPage from "@/pages/SeriesDetailPage";
+import ComicDetailPage from "@/pages/ComicDetailPage";
+import SeriesDetailPage from "@/pages/SeriesDetailPage";
+import CharacterPage from "@/pages/CharacterPage";
 
 const router = createBrowserRouter([
   {
@@ -14,9 +15,10 @@ const router = createBrowserRouter([
     errorElement: <ServerError />,
     children: [
       { path: "/", element: <Home /> },
-      { path: "/character/:id", element: <CharacterPage /> },
-      { path: "/comic/:id", element: <ComicPage /> },
-      { path: "/series/:id", element: <SeriesPage /> },
+      { path: "/characters", element: <CharacterPage /> },
+      { path: "/characters/:id", element: <CharacterDetailPage /> },
+      { path: "/comics/:id", element: <ComicDetailPage /> },
+      { path: "/series/:id", element: <SeriesDetailPage /> },
       { path: "*", element: <NotFound /> },
     ],
   },

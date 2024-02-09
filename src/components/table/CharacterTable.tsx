@@ -20,7 +20,7 @@ function CharacterTable({ characters }: Props) {
   const navigate = useNavigate();
 
   const handleRoute = (id: number) => {
-    navigate(`/character/${id}`);
+    navigate(`/characters/${id}`);
   };
 
   // Render a message if no characters are found

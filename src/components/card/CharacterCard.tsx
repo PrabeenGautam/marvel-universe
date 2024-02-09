@@ -17,7 +17,7 @@ function CharacterCard({ character }: Props) {
 
   return (
     <Link
-      to={`/character/${character.id}`}
+      to={`/characters/${character.id}`}
       className="hover-full clip-border group flex flex-col overflow-hidden rounded-md bg-black"
     >
       <div className="img-wrapper aspect-square h-auto w-full overflow-hidden">

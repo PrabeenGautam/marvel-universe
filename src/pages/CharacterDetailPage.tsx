@@ -99,7 +99,7 @@ function CharacterDetailPage() {
                 title={comic.title}
                 description={comic.description || ""}
                 thumbnail={comic.thumbnail}
-                link={`/comic/${comic.id}`}
+                link={`/comics/${comic.id}`}
               />
             ))}
           </GridContainer>
