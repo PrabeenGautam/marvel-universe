@@ -28,6 +28,15 @@ function CharacterComicChart({ character }: Props) {
     dataLabels: { enabled: false },
     xaxis: {
       categories,
+      title: {
+        text: "Comics Available",
+        offsetY: 10,
+        style: {
+          fontSize: "12px",
+          fontFamily: "Roboto, sans-serif",
+          color: "#fff",
+        },
+      },
       labels: {
         style: { fontSize: "10px", fontFamily: "Roboto, sans-serif" },
       },
