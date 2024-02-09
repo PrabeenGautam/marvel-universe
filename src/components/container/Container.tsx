@@ -5,6 +5,9 @@ interface ContainerProps extends React.HTMLAttributes<HTMLElement> {
   children: React.ReactNode;
 }
 
+/**
+ * Component to render a container element with optional custom styling and attributes.
+ */
 function ContainerElement(
   { children, className = "", ...props }: ContainerProps,
   ref: React.Ref<HTMLElement>,

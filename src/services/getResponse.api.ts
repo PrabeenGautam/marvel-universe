@@ -9,19 +9,17 @@ interface Props {
 }
 
 const getResponse = async ({
-  url,
   method = "get",
   type = "application/json",
   data = {},
   params = {},
+  ...props
 }: Props) => {
-  const myHeader = { "Content-Type": type };
-
   const result = await axios({
     method,
-    url,
+    url: props.url,
     data,
-    headers: myHeader,
+    headers: { "Content-Type": type },
     params: { ...params },
   });
 

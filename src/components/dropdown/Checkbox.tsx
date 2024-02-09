@@ -5,6 +5,9 @@ interface Props {
   onChange: (id: number, isChecked: boolean) => void;
 }
 
+/**
+ * Checkbox component with customizable label and checked state.
+ */
 function Checkbox({ name, id, checked, onChange }: Props) {
   const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const isChecked = e.target.checked;

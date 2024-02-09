@@ -13,6 +13,9 @@ interface Props {
   opacity?: number;
 }
 
+/**
+ * Container for the background image with overlay.
+ */
 const BackgroundContainer = styled.div<Props>`
   position: absolute;
   inset: 0;
@@ -26,6 +29,9 @@ const BackgroundContainer = styled.div<Props>`
   }
 `;
 
+/**
+ * Component for displaying a background hero image with overlay.
+ */
 function BackgroundHero({
   alt,
   url,

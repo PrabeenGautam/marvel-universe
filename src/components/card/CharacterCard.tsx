@@ -1,13 +1,19 @@
-import { CharacterType } from "@/types/response/character.types";
-import Image from "../shared/Image";
 import { Link } from "react-router-dom";
+
+import Image from "../shared/Image";
+import { CharacterType } from "@/types/response/character.types";
+import getCharacterThumbnail from "@/helpers/getCharacterThumbnail";
 
 interface Props {
   character: CharacterType;
 }
 
+/**
+ * Component to render a card for a character.
+ * Displays the character's image, name, and a truncated description.
+ */
 function CharacterCard({ character }: Props) {
-  const { path, extension } = character.thumbnail;
+  const image = getCharacterThumbnail(character.thumbnail);
 
   return (
     <Link
@@ -16,7 +22,7 @@ function CharacterCard({ character }: Props) {
     >
       <div className="img-wrapper aspect-square h-auto w-full overflow-hidden">
         <Image
-          src={`${path}.${extension}`}
+          src={image}
           alt={character.name}
           className="object-cover transition-transform duration-300 ease-in-out group-hover:scale-110"
         />

@@ -1,6 +1,9 @@
 import SearchBar from "../shared/SearchBar";
 import BackgroundHero from "./BackgroundHero";
 
+/**
+ * Component for displaying the hero section with search bar for characters.
+ */
 function CharacterHeroWithSearch() {
   return (
     <div className="hero-container flex-center relative h-100 bg-black px-4 text-white">

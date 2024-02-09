@@ -2,6 +2,9 @@ import { characterStatOptions } from "@/constant";
 import { cn } from "@/lib/utils";
 import { Link, useLocation } from "react-router-dom";
 
+/**
+ * CharacterStatOptions component is used to display the options for the character stats like comics, series, and stories.
+ */
 function CharacterStatOptions() {
   const { hash } = useLocation() as { hash: string };
   const isIn = ["#comics", "#series", "#stories"].includes(hash);

@@ -3,6 +3,9 @@ import Footer from "../shared/Footer";
 import ScrollToTop from "../ScrollToTop";
 import Navbar from "../shared/Navbar";
 
+/**
+ * Component representing the layout structure of the application. It contains the Navbar, Footer, and the Outlet for rendering child routes.
+ */
 function Layout() {
   return (
     <ScrollToTop>

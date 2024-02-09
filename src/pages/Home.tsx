@@ -5,7 +5,7 @@ import { useSearchParams } from "react-router-dom";
 import Loading from "@/components/skeleton/Loading";
 import Pagination from "@/components/shared/Pagination";
 import HomeFilter from "@/components/filter/HomeFilter";
-import Container from "@/components/container/Container,";
+import Container from "@/components/container/Container";
 import { getCharacters } from "@/services/core/character.api";
 import CharacterTable from "@/components/table/CharacterTable";
 import CharacterGrid from "@/components/container/CharacterGrid";

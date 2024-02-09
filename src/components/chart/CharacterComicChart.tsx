@@ -1,15 +1,21 @@
-import { CharacterType } from "@/types/response/character.types";
 import { ApexOptions } from "apexcharts";
 import ApexCharts from "react-apexcharts";
+
+import { CharacterType } from "@/types/response/character.types";
 
 interface Props {
   character: CharacterType[];
 }
 
+/**
+ * Component to render a bar chart displaying the number of comics available for each character.
+ */
 function CharacterComicChart({ character }: Props) {
+  // Extracting categories and series data for the chart
   const categories = character.map((c) => c.name);
   const series = character.map((c) => c.comics.available);
 
+  // Options for the ApexCharts component
   const options: ApexOptions = {
     chart: {
       type: "bar",
@@ -52,6 +58,7 @@ function CharacterComicChart({ character }: Props) {
     },
   };
 
+  // Dynamic height calculation based on the number of characters
   const dynamicHeight = Math.max(character.length * 18, 200);
 
   return (

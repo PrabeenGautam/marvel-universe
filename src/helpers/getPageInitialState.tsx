@@ -4,6 +4,9 @@ interface PageState {
   paginationLength: number;
 }
 
+/**
+ * Calculates the initial state for pagination.
+ */
 function getInitialState({ currentPage, length, paginationLength }: PageState) {
   const pageState = Array.from({ length }, (_, i) => {
     if (currentPage <= 5) return i + 1;

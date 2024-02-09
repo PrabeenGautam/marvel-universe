@@ -8,6 +8,11 @@ interface Props {
   thumbnail?: Thumbnail | null | undefined;
 }
 
+/**
+ * Component to render a detail card.
+ * Displays the title, description, and an optional thumbnail.
+ * Applies hover effects for interactive elements.
+ */
 function DetailCard({ title, description, thumbnail }: Props) {
   const image = getCharacterThumbnail(thumbnail);
 
@@ -25,6 +30,8 @@ function DetailCard({ title, description, thumbnail }: Props) {
         <a href="#" className="title font-medium group-hover:text-red-500">
           {title}
         </a>
+
+        {/* Render description if available */}
         {description && (
           <span className="description line-clamp-2 text-sm">
             {description}

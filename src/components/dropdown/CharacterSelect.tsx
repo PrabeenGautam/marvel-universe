@@ -7,29 +7,32 @@ import Checkbox from "./Checkbox";
 import { CharacterType } from "@/types/response/character.types";
 
 interface Props {
-  character: CharacterType[];
-  selectedCharacter: CharacterType[];
-  setSelectedCharacter: (character: CharacterType[]) => void;
+  characters: CharacterType[];
+  selectedCharacters: CharacterType[];
+  setSelectedCharacters: (character: CharacterType[]) => void;
 }
 
+/**
+ * Component to render a dropdown menu for filtering characters and selecting them using checkboxes.
+ */
 function CharacterSelect({
-  character,
-  setSelectedCharacter,
-  selectedCharacter,
+  characters,
+  setSelectedCharacters,
+  selectedCharacters,
 }: Props) {
-  function handleChange(id: number, isChecked: boolean) {
-    if (!isChecked) {
-      return setSelectedCharacter(selectedCharacter.filter((c) => c.id !== id));
-    }
+  function handleCheckboxChange(characterId: number, isChecked: boolean) {
+    const selectedCharacter = characters.find(
+      (character) => character.id === characterId,
+    );
+    if (!selectedCharacter) return;
 
-    const newCharacter = character.find((c) => c.id === id);
-    if (newCharacter) {
-      setSelectedCharacter(
-        [...selectedCharacter, newCharacter].sort(
-          (a, b) => a.comics.available - b.comics.available,
-        ),
-      );
-    }
+    const updatedCharacters = isChecked
+      ? [...selectedCharacters, selectedCharacter]
+      : selectedCharacters.filter((character) => character.id !== characterId);
+
+    setSelectedCharacters(
+      updatedCharacters.sort((a, b) => a.comics.available - b.comics.available),
+    );
   }
 
   return (
@@ -38,13 +41,13 @@ function CharacterSelect({
         <span>Filter Character</span>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="child-scroll max-h-64 space-y-1 overflow-y-auto border-none bg-[#151515] px-2 py-3 text-white">
-        {character.map((c) => (
+        {characters.map((c) => (
           <Checkbox
             key={c.id}
             name={c.name}
             id={String(c.id)}
-            checked={selectedCharacter.some((ch) => ch.id === c.id)}
-            onChange={handleChange}
+            checked={selectedCharacters.some((ch) => ch.id === c.id)}
+            onChange={handleCheckboxChange}
           />
         ))}
       </DropdownMenuContent>

@@ -11,6 +11,9 @@ interface Props {
   onViewChange: (view: "list" | "grid") => void;
 }
 
+/**
+ * Component for displaying filtering options in the home page.
+ */
 function HomeFilter({ data, onViewChange }: Props) {
   // Extract search parameters from the URL
   const [searchParams] = useSearchParams();

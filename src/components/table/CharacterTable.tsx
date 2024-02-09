@@ -23,9 +23,8 @@ function CharacterTable({ characters }: Props) {
     navigate(`/character/${id}`);
   };
 
-  const length = characters.length;
-
-  if (length === 0) {
+  // Render a message if no characters are found
+  if (characters.length === 0) {
     return (
       <NoResult
         title="No Characters Found"
@@ -34,6 +33,7 @@ function CharacterTable({ characters }: Props) {
     );
   }
 
+  // Render character table
   return (
     <div className="overflow-x-auto rounded-xl bg-[#2e2e36] text-white shadow-md">
       <Table className="min-w-[28rem] rounded-xl text-sm">

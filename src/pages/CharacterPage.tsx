@@ -4,7 +4,7 @@ import { useLocation, useParams } from "react-router-dom";
 
 import Header from "@/components/shared/Header";
 import DetailCard from "@/components/card/DetailCard";
-import Container from "@/components/container/Container,";
+import Container from "@/components/container/Container";
 import CharacterHero from "@/components/hero/CharacterHero";
 import GridContainer from "@/components/container/GridContainer";
 import {

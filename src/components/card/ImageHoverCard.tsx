@@ -11,6 +11,10 @@ interface Props {
   alt?: string;
 }
 
+/**
+ * Component to render an image with a hover effect.
+ * Displays the image with a hoverable card containing the same image.
+ */
 function ImageHoverCard({ src, alt = "thumbnail" }: Props) {
   return (
     <HoverCard openDelay={100}>

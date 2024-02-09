@@ -9,6 +9,9 @@ interface Props {
 
 type Stat = "comics" | "series" | "stories" | "events";
 
+/**
+ * Component for displaying the hero section of a character.
+ */
 function CharacterHero({ character }: Props) {
   const image = getCharacterThumbnail(character?.thumbnail);
 

@@ -15,12 +15,16 @@ interface Props {
   characters: CharacterType[];
 }
 
+/**
+ * Modal component for displaying character charts.
+ */
 export default function CharacterChartModal({ characters }: Props) {
   const sortedCharacters = [...characters].sort((a, b) => {
     return a.comics.available - b.comics.available;
   });
 
-  const [selectedCharacter, setSelectedCharacter] = useState(sortedCharacters);
+  const [selectedCharacters, setSelectedCharacters] =
+    useState(sortedCharacters);
 
   return (
     <Dialog>
@@ -32,11 +36,11 @@ export default function CharacterChartModal({ characters }: Props) {
       <DialogContent className="border-none bg-[#181818] px-0 md:p-6">
         <DialogHeader className="space-y-4">
           <CharacterSelect
-            character={sortedCharacters}
-            selectedCharacter={selectedCharacter}
-            setSelectedCharacter={setSelectedCharacter}
+            characters={sortedCharacters}
+            selectedCharacters={selectedCharacters}
+            setSelectedCharacters={setSelectedCharacters}
           />
-          <CharacterComicChart character={selectedCharacter} />
+          <CharacterComicChart character={selectedCharacters} />
         </DialogHeader>
       </DialogContent>
     </Dialog>
