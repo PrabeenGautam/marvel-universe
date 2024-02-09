@@ -9,7 +9,7 @@ import Header from "@/components/shared/Header";
 import CardSkeletonClip from "@/components/skeleton/CardSkeletonClip";
 import CharacterGrid from "@/components/container/CharacterGrid";
 
-function SeriesPage() {
+function SeriesDetailPage() {
   // Extracting the character ID from URL parameters
   const { id } = useParams<{ id: string }>();
 
@@ -54,4 +54,4 @@ function SeriesPage() {
   );
 }
 
-export default SeriesPage;
+export default SeriesDetailPage;

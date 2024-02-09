@@ -1,11 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
 import Home from "@/pages/Home";
 import Layout from "@/components/layout/Layout";
-import CharacterPage from "@/pages/CharacterPage";
+import CharacterPage from "@/pages/CharacterDetailPage";
 import NotFound from "@/pages/NotFound";
 import ServerError from "@/pages/ErrorPage";
-import ComicPage from "@/pages/ComicPage";
-import SeriesPage from "@/pages/SeriesPage";
+import ComicPage from "@/pages/ComicDetailPage";
+import SeriesPage from "@/pages/SeriesDetailPage";
 
 const router = createBrowserRouter([
   {

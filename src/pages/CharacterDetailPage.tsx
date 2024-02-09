@@ -20,7 +20,7 @@ import CharacterHeroSkeleton from "@/components/skeleton/CharacterHeroSkeleton";
 /**
  * Component to display detailed information about a character, including comics, series, and stories.
  */
-function CharacterPage() {
+function CharacterDetailPage() {
   // Extracting the character ID from URL parameters
   const { id } = useParams<{ id: string }>();
   const { hash } = useLocation();
@@ -155,4 +155,4 @@ function CharacterPage() {
   );
 }
 
-export default CharacterPage;
+export default CharacterDetailPage;

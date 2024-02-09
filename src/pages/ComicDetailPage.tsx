@@ -9,7 +9,7 @@ import Header from "@/components/shared/Header";
 import CharacterGrid from "@/components/container/CharacterGrid";
 import CardSkeletonClip from "@/components/skeleton/CardSkeletonClip";
 
-function ComicPage() {
+function ComicDetailPage() {
   // Extracting the character ID from URL parameters
   const { id } = useParams<{ id: string }>();
 
@@ -63,4 +63,4 @@ function ComicPage() {
   );
 }
 
-export default ComicPage;
+export default ComicDetailPage;
