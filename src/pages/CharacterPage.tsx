@@ -1,14 +1,15 @@
-import { Fragment } from "react";
+import { Fragment, useCallback } from "react";
 import { useInfiniteQuery } from "@tanstack/react-query";
 
 import Header from "@/components/shared/Header";
+import NoResult from "@/components/shared/NoResult";
 import Container from "@/components/container/Container";
+import CharacterCard from "@/components/card/CharacterCard";
+import { getCharacterViaOffset } from "@/services/core/character.api";
+
 import CardSkeletonClip, {
   CardSkeletonBase,
 } from "@/components/skeleton/CardSkeletonClip";
-import { getCharacterViaOffset } from "@/services/core/character.api";
-import NoResult from "@/components/shared/NoResult";
-import CharacterCard from "@/components/card/CharacterCard";
 
 function CharacterPage() {
   const {
@@ -27,6 +28,30 @@ function CharacterPage() {
       return lastPage.offset + lastPage.limit;
     },
   });
+
+  const cardRef = useCallback(
+    (card: any) => {
+      if (!card) return;
+
+      const options = {
+        threshold: 1,
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          observer.unobserve(card);
+          console.log("fetching next page");
+          if (hasNextPage) {
+            console.log("object");
+            fetchNextPage();
+          }
+        }
+      }, options);
+
+      observer.observe(card);
+    },
+    [hasNextPage],
+  );
 
   // Throw an error if something went wrong fetching data. This will be caught by the ErrorBoundary
   if (isError) throw new Error("Something went wrong fetching data!");
@@ -51,18 +76,20 @@ function CharacterPage() {
         {data &&
           data.pages.map((page, pageIndex) => (
             <Fragment key={`infinite-card-${pageIndex}`}>
-              {page.results.map((character) => (
-                <CharacterCard key={character.id} character={character} />
+              {page.results.map((character, index, array) => (
+                <div
+                  key={character.id}
+                  className="flex"
+                  ref={index === array.length - 1 ? cardRef : undefined}
+                >
+                  <CharacterCard character={character} />
+                </div>
               ))}
             </Fragment>
           ))}
 
         {isFetchingNextPage && <CardSkeletonBase />}
       </div>
-
-      {hasNextPage && !isFetchingNextPage && (
-        <button onClick={() => fetchNextPage()}>Load More</button>
-      )}
     </Container>
   );
 }
