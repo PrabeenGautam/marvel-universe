@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import DetailHero from "@/components/hero/DetailHero";
 import { getSeriesById } from "@/services/core/series.api";
+import DetailHeroSkeleton from "@/components/skeleton/DetailHeroSkeleton";
 
 function SeriesPage() {
   // Extracting the character ID from URL parameters
@@ -23,7 +24,7 @@ function SeriesPage() {
 
   return (
     <div>
-      {isLoading && <div>Loading...</div>}
+      {isLoading && <DetailHeroSkeleton />}
       {seriesData && (
         <DetailHero
           title={seriesData.title}

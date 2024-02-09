@@ -17,7 +17,7 @@ function DetailHero({ title, description, thumbnail, creators, date }: Props) {
   const image = getThumbnailUrl(thumbnail);
 
   return (
-    <div className="relative min-h-[min(768px,100dvh)]">
+    <div className="relative min-h-dvh">
       <BackgroundHeroComponent
         url={image}
         opacity={0.95}

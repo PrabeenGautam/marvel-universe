@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import DetailHero from "@/components/hero/DetailHero";
 import { getComicById } from "@/services/core/comic.api";
+import DetailHeroSkeleton from "@/components/skeleton/DetailHeroSkeleton";
 
 function ComicPage() {
   // Extracting the character ID from URL parameters
@@ -31,7 +32,7 @@ function ComicPage() {
 
   return (
     <div>
-      {isLoading && <div>Loading...</div>}
+      {isLoading && <DetailHeroSkeleton />}
       {comicData && (
         <DetailHero
           title={comicData.title}
