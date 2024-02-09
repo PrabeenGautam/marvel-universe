@@ -8,18 +8,26 @@ function SearchBar() {
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      setSearchParams((params) => {
-        query ? params.set("search", query) : params.delete("search");
-        return params;
-      });
+      if (query) {
+        setSearchParams({ search: query });
+      } else {
+        setSearchParams({});
+      }
     }, 500);
 
     // Clear timeout if the component is unmounted
     return () => clearTimeout(timeout);
   }, [query]);
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  };
+
   return (
-    <form className="flex w-full select-none rounded bg-white px-2 py-1.5">
+    <form
+      className="flex w-full select-none rounded bg-white px-2 py-1.5"
+      onSubmit={handleSubmit}
+    >
       <Search className="stroke-gray-500" />
 
       <input
