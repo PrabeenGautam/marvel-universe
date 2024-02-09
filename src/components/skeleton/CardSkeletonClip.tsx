@@ -15,7 +15,7 @@ export function CardSkeletonBase() {
   return (
     <>
       {Array.from({ length: 10 }).map((_, index) => (
-        <Skeleton key={index} className="aspect-2/3" />
+        <Skeleton key={index} className="clip-border aspect-2/3" />
       ))}
     </>
   );
