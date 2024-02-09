@@ -3,14 +3,18 @@ import Image from "./Image";
 
 function Footer() {
   const year = new Date().getFullYear();
-  const baseURL = import.meta.env.VITE_APP_BASEURL;
+  const baseURL = import.meta.env.VITE_APP_BASEURL || "/";
 
   return (
     <footer className="mt-4 bg-black/50">
       <div className="mx-auto w-full max-w-screen-xl p-4 md:py-8">
         <div className="flex flex-wrap items-center justify-between gap-8">
           <Link to="/">
-            <Image src="/static/logo.jpg" className="h-10" alt="Marvel Logo" />
+            <Image
+              src={`${baseURL}/static/logo.jpg`}
+              className="h-10"
+              alt="Marvel Logo"
+            />
           </Link>
 
           <ul className="flex items-center text-sm font-medium text-gray-500 dark:text-gray-400">

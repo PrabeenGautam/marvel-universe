@@ -2,11 +2,17 @@ import { Link } from "react-router-dom";
 import Image from "./Image";
 
 function Navbar() {
+  const baseURL = import.meta.env.VITE_APP_BASEURL || "/";
+
   return (
-    <nav className="sticky top-0 mt-4 bg-black/50">
+    <nav className="sticky top-0 z-30  bg-black">
       <div className="mx-auto flex w-full max-w-screen-xl flex-wrap items-center justify-between gap-8 p-4 md:py-8">
         <Link to="/">
-          <Image src="/static/logo.jpg" className="h-10" alt="Marvel Logo" />
+          <Image
+            src={`${baseURL}/static/logo.jpg`}
+            className="h-10"
+            alt="Marvel Logo"
+          />
         </Link>
 
         <ul className="flex items-center text-sm font-medium text-gray-500 dark:text-gray-400">

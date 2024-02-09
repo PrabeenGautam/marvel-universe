@@ -6,10 +6,11 @@ interface Props {
 }
 
 function NoResult({ title, description }: Props) {
+  const baseURL = import.meta.env.VITE_APP_BASEURL || "/";
   return (
     <div className="mt-10 flex w-full flex-col items-center justify-center">
       <Image
-        src="/static/dark-illustration.png"
+        src={`${baseURL}/static/dark-illustration.png`}
         alt="No Result illustration"
         width={270}
         height={200}
