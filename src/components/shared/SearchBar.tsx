@@ -8,11 +8,13 @@ function SearchBar() {
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      if (query) {
-        setSearchParams({ search: query });
-      } else {
-        setSearchParams({});
-      }
+      setSearchParams((params) => {
+        query
+          ? params.set("nameStartsWith", query)
+          : params.delete("nameStartsWith");
+
+        return params;
+      });
     }, 500);
 
     // Clear timeout if the component is unmounted

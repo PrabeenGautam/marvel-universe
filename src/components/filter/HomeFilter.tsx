@@ -14,7 +14,7 @@ interface Props {
 function HomeFilter({ data, onViewChange }: Props) {
   // Extract search parameters from the URL
   const [searchParams] = useSearchParams();
-  const search = searchParams.get("search") || "";
+  const nameStartsWith = searchParams.get("nameStartsWith") || "";
   const page = getDefaultPage(searchParams.get("page"));
   const sort = getDefaultSort(searchParams.get("sort"));
 
@@ -25,9 +25,9 @@ function HomeFilter({ data, onViewChange }: Props) {
         {data.total || "N/A"}
 
         <span>results</span>
-        {search && (
+        {nameStartsWith && (
           <span>
-            for <strong>"{search}"</strong>
+            for <strong>"{nameStartsWith}"</strong>
           </span>
         )}
       </div>
@@ -36,7 +36,7 @@ function HomeFilter({ data, onViewChange }: Props) {
       <div className="flex flex-wrap items-center gap-2">
         <CharacterChartModal
           characters={data.results}
-          key={`pagination-${page}-${sort}-${search}`}
+          key={`pagination-${page}-${sort}-${nameStartsWith}`}
         />
         <SortBy />
         <ViewSelector onChange={onViewChange} />

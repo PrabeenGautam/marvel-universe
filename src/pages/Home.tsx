@@ -4,6 +4,7 @@ import { useSearchParams } from "react-router-dom";
 
 import Loading from "@/components/skeleton/Loading";
 import Pagination from "@/components/shared/Pagination";
+import HomeFilter from "@/components/filter/HomeFilter";
 import Container from "@/components/container/Container,";
 import { getCharacters } from "@/services/core/character.api";
 import CharacterTable from "@/components/table/CharacterTable";
@@ -17,7 +18,6 @@ import {
   setItemInLocalStorage,
 } from "@/helpers/storage";
 import CardSkeletonClip from "@/components/skeleton/CardSkeletonClip";
-import HomeFilter from "@/components/filter/HomeFilter";
 
 type View = "list" | "grid";
 
@@ -33,18 +33,19 @@ function Home() {
 
   // Extract search parameters from the URL
   const [searchParams] = useSearchParams();
-  const search = searchParams.get("search") || "";
+
+  const nameStartsWith = searchParams.get("nameStartsWith") || "";
   const page = getDefaultPage(searchParams.get("page"));
   const sort = getDefaultSort(searchParams.get("sort"));
 
   // Fetch characters based on search parameters using react-query
   const { data, isError, isLoading } = useQuery({
-    queryKey: [`characters-${page}-${sort}-${search}`],
+    queryKey: [`characters-${page}-${sort}-${nameStartsWith}`],
     queryFn: () =>
       getCharacters({
         page,
         orderBy: sort,
-        nameStartsWith: search,
+        nameStartsWith,
       }),
   });
 
@@ -62,6 +63,7 @@ function Home() {
       <div>
         {/* Hero section with search functionality */}
         <CharacterHeroWithSearch />
+
         {/* Main content container */}
         <Container className="space-y-8">
           {view === "grid" && <CardSkeletonClip />}
@@ -94,7 +96,7 @@ function Home() {
         <div className="flex justify-end">
           {/* Pagination component */}
           <Pagination
-            key={`pagination-${page}-${sort}-${search}`}
+            key={`pagination-${page}-${sort}-${nameStartsWith}`}
             pagination={{
               count: data.count,
               limit: data.limit,
