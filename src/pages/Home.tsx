@@ -87,6 +87,7 @@ function Home() {
             <div className="flex justify-end">
               {/* Pagination component */}
               <Pagination
+                key={`pagination-${page}-${sort}-${search}`}
                 pagination={{
                   count: data.count,
                   limit: data.limit,
