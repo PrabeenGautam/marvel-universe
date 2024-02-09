@@ -1,21 +1,22 @@
-import Container from "@/components/container/Container,";
-import GridContainer from "@/components/container/GridContainer";
-import CharacterHero from "@/components/hero/CharacterHero";
-import CharacterStatOptions from "@/components/info/CharacterStatOptions";
-import Header from "@/components/shared/Header";
-import { characters } from "@/constant/temp/characters";
-import { useLocation, useParams } from "react-router-dom";
-import { comics } from "./../constant/temp/comic";
-import DetailCard from "@/components/card/DetailCard";
-import { series } from "@/constant/temp/series";
-import { stories } from "@/constant/temp/stories";
 import { useLayoutEffect, useRef } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { useLocation, useParams } from "react-router-dom";
+
+import Header from "@/components/shared/Header";
+import DetailCard from "@/components/card/DetailCard";
+import Container from "@/components/container/Container,";
+import CharacterHero from "@/components/hero/CharacterHero";
+import GridContainer from "@/components/container/GridContainer";
+import {
+  getCharacterById,
+  getCharacterComics,
+  getCharacterSeries,
+  getCharacterStories,
+} from "@/services/core/character.api";
+import CharacterStatOptions from "@/components/info/CharacterStatOptions";
 
 function CharacterPage() {
   const { id } = useParams<{ id: string }>();
-  const character = characters.data.results.find(
-    (c) => String(c.id) === id,
-  ) as any;
 
   const { hash } = useLocation();
 
@@ -30,15 +31,39 @@ function CharacterPage() {
     element.scrollIntoView({ behavior: "smooth" });
   }, [hash]);
 
-  const comicsList = comics.data.results;
-  const seriesList = series.data.results;
-  const storiesList = stories.data.results;
+  const {
+    data: characters,
+    isError: isCharacterError,
+    isLoading: isCharacterLoading,
+  } = useQuery({
+    queryKey: [`character-${id}`],
+    queryFn: () => getCharacterById(id),
+  });
+
+  const { data: comicsList } = useQuery({
+    queryKey: [`character-comic-${id}`],
+    queryFn: () => getCharacterComics(id),
+  });
+
+  const { data: seriesList } = useQuery({
+    queryKey: [`character-series-${id}`],
+    queryFn: () => getCharacterSeries(id),
+  });
+
+  const { data: storiesList } = useQuery({
+    queryKey: [`character-story-${id}`],
+    queryFn: () => getCharacterStories(id),
+  });
+
+  if (isCharacterError) throw new Error("Character not found");
 
   return (
     <div className="space-y-4">
       <section className="relative">
         <div>
-          <CharacterHero character={character} />
+          {!isCharacterLoading && characters && (
+            <CharacterHero character={characters.results[0]} />
+          )}
           <div className="absolute bottom-0 right-0 hidden translate-y-1/2 sm:right-20 sm:block">
             <CharacterStatOptions />
           </div>
@@ -52,7 +77,7 @@ function CharacterPage() {
       >
         <Header title="Comics" />
         <GridContainer>
-          {comicsList.map((comic) => (
+          {comicsList?.results.map((comic) => (
             <DetailCard
               key={comic.id}
               title={comic.title}
@@ -70,7 +95,7 @@ function CharacterPage() {
       >
         <Header title="Series" />
         <GridContainer>
-          {seriesList.map((series) => (
+          {seriesList?.results.map((series) => (
             <DetailCard
               key={series.id}
               title={series.title}
@@ -87,13 +112,14 @@ function CharacterPage() {
         ref={(ref) => (elementRef.current[2] = ref as HTMLDivElement)}
       >
         <Header title="Stories" />
+
         <GridContainer>
-          {storiesList.map((comic) => (
+          {storiesList?.results.map((story) => (
             <DetailCard
-              key={comic.id}
-              title={comic.title}
-              description={comic.description}
-              thumbnail={comic.thumbnail}
+              key={story.id}
+              title={story.title}
+              description={story.description || ""}
+              thumbnail={story.thumbnail}
             />
           ))}
         </GridContainer>

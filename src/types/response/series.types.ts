@@ -8,11 +8,11 @@ import {
   Url,
 } from ".";
 
-export interface SeriesTypes extends PaginationStats {
-  results: SeriesData[];
+export interface SeriesData extends PaginationStats {
+  results: SeriesTypes[];
 }
 
-export interface SeriesData {
+export interface SeriesTypes {
   id: number;
   title: string;
   description: string | null;

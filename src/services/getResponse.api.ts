@@ -25,7 +25,7 @@ const getResponse = async ({
     params: { ...params },
   });
 
-  return result;
+  return result.data;
 };
 
 export default getResponse;

@@ -1,3 +1,8 @@
+export * from "./character.types";
+export * from "./comic.types";
+export * from "./series.types";
+export * from "./stories.types";
+
 export interface MarvelResponse<T> {
   code: number;
   status: string;

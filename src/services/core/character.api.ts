@@ -3,6 +3,7 @@ import getResponse from "../getResponse.api";
 import { CharacterResponse } from "@/types/response/character.types";
 
 import { SortType } from "@/types";
+import { ComicsData, SeriesData, StoriesData } from "@/types/response";
 
 interface GetCharactersProps {
   page: number;
@@ -28,35 +29,59 @@ export const getCharacters = async (
     params,
   });
 
-  return response.data.data;
+  return response.data;
 };
 
-export const getCharacterById = async (id: number) => {
-  return await getResponse({
+export const getCharacterById = async (
+  id?: string,
+): Promise<CharacterResponse> => {
+  if (!id) throw new Error("Character ID is required");
+
+  const response = await getResponse({
     url: CharactersConfig.GET_CHARACTER_BY_ID(id),
   });
+
+  return response.data;
 };
 
-export const getCharacterComics = async (id: number) => {
-  return await getResponse({
+export const getCharacterComics = async (id?: string): Promise<ComicsData> => {
+  if (!id) throw new Error("Character ID is required");
+
+  const response = await getResponse({
     url: CharactersConfig.GET_CHARACTER_COMICS(id),
   });
+
+  return response.data;
 };
 
-export const getCharacterEvents = async (id: number) => {
-  return await getResponse({
+export const getCharacterEvents = async (id?: string) => {
+  if (!id) throw new Error("Character ID is required");
+
+  const response = await getResponse({
     url: CharactersConfig.GET_CHARACTER_EVENTS(id),
   });
+
+  return response.data;
 };
 
-export const getCharacterSeries = async (id: number) => {
-  return await getResponse({
+export const getCharacterSeries = async (id?: string): Promise<SeriesData> => {
+  if (!id) throw new Error("Character ID is required");
+
+  const response = await getResponse({
     url: CharactersConfig.GET_CHARACTER_SERIES(id),
   });
+
+  return response.data;
 };
 
-export const getCharacterStories = async (id: number) => {
-  return await getResponse({
+export const getCharacterStories = async (
+  id?: string,
+): Promise<StoriesData> => {
+  if (!id) throw new Error("Character ID is required");
+
+  const response = await getResponse({
     url: CharactersConfig.GET_CHARACTER_STORIES(id),
   });
+
+  return response.data;
 };

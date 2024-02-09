@@ -22,7 +22,7 @@ import {
 type View = "list" | "grid";
 
 /**
- * Home Component
+ * Home Page
  * Responsible for displaying a list of characters with various viewing options.
  */
 function Home() {
