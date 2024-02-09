@@ -1,6 +1,9 @@
-import { ImgHTMLAttributes } from "react";
+import {
+  LazyLoadImage,
+  LazyLoadImageProps,
+} from "react-lazy-load-image-component";
 
-interface ImageProps extends ImgHTMLAttributes<HTMLImageElement> {
+interface ImageProps extends LazyLoadImageProps {
   webpSrc?: string;
 }
 
@@ -9,7 +12,7 @@ function Image({ src, alt, className = "", webpSrc, ...props }: ImageProps) {
     <picture>
       {/* If webpSrc is provided, render a source element with the webpSrc */}
       {webpSrc && <source srcSet={webpSrc} type="image/webp" />}
-      <img src={src} alt={alt} className={className} {...props} />
+      <LazyLoadImage src={src} alt={alt} className={className} {...props} />
     </picture>
   );
 }
