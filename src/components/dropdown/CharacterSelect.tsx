@@ -37,7 +37,7 @@ function CharacterSelect({
       <DropdownMenuTrigger className="no-focus flex-center ml-3 w-fit rounded-md border border-gray-400 px-3 py-1.5 text-sm text-white hover:bg-black sm:ml-0">
         <span>Filter Character</span>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="child-scroll max-h-64 space-y-1 overflow-y-auto bg-[#151515] px-2 py-3 text-white">
+      <DropdownMenuContent className="child-scroll max-h-64 space-y-1 overflow-y-auto border-none bg-[#151515] px-2 py-3 text-white">
         {character.map((c) => (
           <Checkbox
             key={c.id}

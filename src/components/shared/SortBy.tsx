@@ -38,12 +38,12 @@ function SortBy() {
           <SelectValue placeholder="Choose sorting methods" />
         </SelectTrigger>
 
-        <SelectContent>
+        <SelectContent className="border-none bg-[#111] text-white">
           {sortOptions.map((option) => (
             <SelectItem
               key={option.key}
               value={option.value}
-              className="text-xs"
+              className="text-xs hover:bg-[#222]"
             >
               {option.label}
             </SelectItem>

@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "react-router-dom";
 
 import SortBy from "@/components/shared/SortBy";
+import { Skeleton } from "@/components/ui/skeleton";
 import Pagination from "@/components/shared/Pagination";
 import Container from "@/components/container/Container,";
 import ViewSelector from "@/components/shared/ViewSelector";
@@ -65,7 +66,7 @@ function Home() {
       <Container className="space-y-8">
         <div className="filter-options flex w-full flex-wrap items-center justify-between gap-4">
           <div className="flex items-center gap-1 text-sm font-medium uppercase text-gray-300">
-            {isLoading ? <span>...</span> : data?.total || 0}
+            {isLoading ? <Skeleton className="h-4 w-10" /> : data?.total || 0}
             <span>results</span>
           </div>
 
