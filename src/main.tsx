@@ -8,7 +8,13 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import "./styles/index.css";
 import router from "./lib/router";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
