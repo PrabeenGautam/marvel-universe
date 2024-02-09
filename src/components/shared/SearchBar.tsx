@@ -3,8 +3,10 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
 function SearchBar() {
-  const [query, setQuery] = useState("");
-  const [, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const nameStartsWith = searchParams.get("nameStartsWith") || "";
+
+  const [query, setQuery] = useState(nameStartsWith);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
