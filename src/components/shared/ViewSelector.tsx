@@ -1,15 +1,17 @@
+import { getItemFromLocalStorage } from "@/helpers/storage";
 import { cn } from "@/lib/utils";
 import { Grid2X2, List } from "lucide-react";
 
 interface Props {
   onChange: (view: "grid" | "list") => void;
-  view: "grid" | "list";
 }
 
-function ViewSelector({ onChange, view }: Props) {
+function ViewSelector({ onChange }: Props) {
   const handleViewChange = (view: "grid" | "list") => {
     onChange(view);
   };
+
+  const view = getItemFromLocalStorage("view") || "list";
 
   return (
     <div className="flex items-center gap-4 px-2 py-1.5 font-roboto ">

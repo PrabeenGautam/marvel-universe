@@ -15,7 +15,7 @@ interface Props {
   characters: CharacterType[];
 }
 
-export function CharacterChart({ characters }: Props) {
+export default function CharacterChartModal({ characters }: Props) {
   const sortedCharacters = [...characters].sort((a, b) => {
     return a.comics.available - b.comics.available;
   });

@@ -2,13 +2,10 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "react-router-dom";
 
-import SortBy from "@/components/shared/SortBy";
-import { Skeleton } from "@/components/ui/skeleton";
+import Loading from "@/components/skeleton/Loading";
 import Pagination from "@/components/shared/Pagination";
 import Container from "@/components/container/Container,";
-import ViewSelector from "@/components/shared/ViewSelector";
 import { getCharacters } from "@/services/core/character.api";
-import { CharacterChart } from "@/components/modal/ChartModal";
 import CharacterTable from "@/components/table/CharacterTable";
 import CharacterGrid from "@/components/container/CharacterGrid";
 
@@ -19,6 +16,8 @@ import {
   getItemFromLocalStorage,
   setItemInLocalStorage,
 } from "@/helpers/storage";
+import CardSkeletonClip from "@/components/skeleton/CardSkeletonClip";
+import HomeFilter from "@/components/filter/HomeFilter";
 
 type View = "list" | "grid";
 
@@ -57,6 +56,25 @@ function Home() {
     setItemInLocalStorage("view", view);
   };
 
+  // Display loading skeleton while fetching data
+  if (isLoading || !data)
+    return (
+      <div>
+        {/* Hero section with search functionality */}
+        <CharacterHeroWithSearch />
+        {/* Main content container */}
+        <Container className="space-y-8">
+          {view === "grid" && <CardSkeletonClip />}
+          {view === "list" && (
+            <div className="min-h-96">
+              <Loading />
+            </div>
+          )}
+        </Container>
+      </div>
+    );
+
+  // Display characters based on the selected view
   return (
     <div>
       {/* Hero section with search functionality */}
@@ -64,43 +82,27 @@ function Home() {
 
       {/* Main content container */}
       <Container className="space-y-8">
-        <div className="filter-options flex w-full flex-wrap items-center justify-between gap-4">
-          <div className="flex items-center gap-1 text-sm font-medium uppercase text-gray-300">
-            {isLoading ? <Skeleton className="h-4 w-10" /> : data?.total || 0}
-            <span>results</span>
-          </div>
-
-          {/* Options for chart, sorting, and view selection */}
-          <div className="flex flex-wrap items-center gap-2">
-            {!isLoading && data && <CharacterChart characters={data.results} />}
-            <SortBy />
-            <ViewSelector view={view} onChange={handleViewChange} />
-          </div>
-        </div>
+        {data.results.length > 0 && (
+          <HomeFilter data={data} onViewChange={handleViewChange} />
+        )}
 
         {/* Display characters based on the selected view */}
-        {!isLoading && data ? (
-          <>
-            <div>
-              {view === "grid" && <CharacterGrid characters={data.results} />}
-              {view === "list" && <CharacterTable characters={data.results} />}
-            </div>
-            <div className="flex justify-end">
-              {/* Pagination component */}
-              <Pagination
-                key={`pagination-${page}-${sort}-${search}`}
-                pagination={{
-                  count: data.count,
-                  limit: data.limit,
-                  offset: data.offset,
-                  total: data.total,
-                }}
-              />
-            </div>
-          </>
-        ) : (
-          <div>Loading...</div>
-        )}
+        <div>
+          {view === "grid" && <CharacterGrid characters={data.results} />}
+          {view === "list" && <CharacterTable characters={data.results} />}
+        </div>
+        <div className="flex justify-end">
+          {/* Pagination component */}
+          <Pagination
+            key={`pagination-${page}-${sort}-${search}`}
+            pagination={{
+              count: data.count,
+              limit: data.limit,
+              offset: data.offset,
+              total: data.total,
+            }}
+          />
+        </div>
       </Container>
     </div>
   );

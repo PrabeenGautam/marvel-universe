@@ -14,6 +14,8 @@ import {
   getCharacterStories,
 } from "@/services/core/character.api";
 import CharacterStatOptions from "@/components/info/CharacterStatOptions";
+import CardSkeleton from "@/components/skeleton/CardSkeleton";
+import CharacterHeroSkeleton from "@/components/skeleton/CharacterHeroSkeleton";
 
 /**
  * Component to display detailed information about a character, including comics, series, and stories.
@@ -48,17 +50,17 @@ function CharacterPage() {
     queryFn: () => getCharacterById(id),
   });
 
-  const { data: comicsList } = useQuery({
+  const { data: comicsList, isLoading: isComicsLoading } = useQuery({
     queryKey: [`character-comic-${id}`],
     queryFn: () => getCharacterComics(id),
   });
 
-  const { data: seriesList } = useQuery({
+  const { data: seriesList, isLoading: isSeriesLoading } = useQuery({
     queryKey: [`character-series-${id}`],
     queryFn: () => getCharacterSeries(id),
   });
 
-  const { data: storiesList } = useQuery({
+  const { data: storiesList, isLoading: isStoriesLoading } = useQuery({
     queryKey: [`character-story-${id}`],
     queryFn: () => getCharacterStories(id),
   });
@@ -71,6 +73,7 @@ function CharacterPage() {
       {/* Section for character hero image */}
       <section className="relative">
         <div>
+          {isCharacterLoading && <CharacterHeroSkeleton />}
           {!isCharacterLoading && characterData && (
             <CharacterHero character={characterData.results[0]} />
           )}
@@ -82,60 +85,69 @@ function CharacterPage() {
 
       {/* Container for displaying comics */}
       <Container
-        className="space-y-4"
+        className="space-y-6"
         id="comics"
         ref={(ref) => (elementRef.current[0] = ref as HTMLDivElement)}
       >
         <Header title="Comics" />
-        <GridContainer>
-          {comicsList?.results.map((comic) => (
-            <DetailCard
-              key={comic.id}
-              title={comic.title}
-              description={comic.description}
-              thumbnail={comic.thumbnail}
-            />
-          ))}
-        </GridContainer>
+        {isComicsLoading && <CardSkeleton />}
+        {!isComicsLoading && (
+          <GridContainer>
+            {comicsList?.results.map((comic) => (
+              <DetailCard
+                key={comic.id}
+                title={comic.title}
+                description={comic.description || ""}
+                thumbnail={comic.thumbnail}
+              />
+            ))}
+          </GridContainer>
+        )}
       </Container>
 
       {/* Container for displaying series */}
       <Container
-        className="space-y-4"
+        className="space-y-6"
         id="series"
         ref={(ref) => (elementRef.current[1] = ref as HTMLDivElement)}
       >
         <Header title="Series" />
-        <GridContainer>
-          {seriesList?.results.map((series) => (
-            <DetailCard
-              key={series.id}
-              title={series.title}
-              description={series.description || ""}
-              thumbnail={series.thumbnail}
-            />
-          ))}
-        </GridContainer>
+        {isSeriesLoading && <CardSkeleton />}
+        {!isSeriesLoading && (
+          <GridContainer>
+            {seriesList?.results.map((comic) => (
+              <DetailCard
+                key={comic.id}
+                title={comic.title}
+                description={comic.description || ""}
+                thumbnail={comic.thumbnail}
+              />
+            ))}
+          </GridContainer>
+        )}
       </Container>
 
       {/* Container for displaying stories */}
       <Container
-        className="space-y-4"
+        className="space-y-6"
         id="stories"
         ref={(ref) => (elementRef.current[2] = ref as HTMLDivElement)}
       >
         <Header title="Stories" />
 
-        <GridContainer>
-          {storiesList?.results.map((story) => (
-            <DetailCard
-              key={story.id}
-              title={story.title}
-              description={story.description || ""}
-              thumbnail={story.thumbnail}
-            />
-          ))}
-        </GridContainer>
+        {isStoriesLoading && <CardSkeleton />}
+        {!isStoriesLoading && (
+          <GridContainer>
+            {storiesList?.results.map((comic) => (
+              <DetailCard
+                key={comic.id}
+                title={comic.title}
+                description={comic.description || ""}
+                thumbnail={comic.thumbnail}
+              />
+            ))}
+          </GridContainer>
+        )}
       </Container>
     </div>
   );

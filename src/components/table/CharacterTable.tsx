@@ -10,6 +10,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import NoResult from "../shared/NoResult";
 
 interface Props {
   characters: CharacterType[];
@@ -21,6 +22,17 @@ function CharacterTable({ characters }: Props) {
   const handleRoute = (id: number) => {
     navigate(`/character/${id}`);
   };
+
+  const length = characters.length;
+
+  if (length === 0) {
+    return (
+      <NoResult
+        title="No Characters Found"
+        description="We couldn't find any characters that match your search criteria. It's possible that the search query you entered doesn't match any existing characters in our database."
+      />
+    );
+  }
 
   return (
     <div className="overflow-x-auto rounded-xl bg-[#2e2e36] text-white shadow-md">
