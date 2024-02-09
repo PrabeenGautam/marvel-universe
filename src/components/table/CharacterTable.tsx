@@ -11,6 +11,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import NoResult from "../shared/NoResult";
+import getThumbnailUrl from "@/helpers/getThumbnailUrl";
 
 interface Props {
   characters: CharacterType[];
@@ -47,8 +48,7 @@ function CharacterTable({ characters }: Props) {
         </TableHeader>
         <TableBody>
           {characters.map((character) => {
-            const { path, extension } = character.thumbnail;
-            const image = `${path}.${extension}`;
+            const image = getThumbnailUrl(character.thumbnail);
 
             return (
               <TableRow
